@@ -7,8 +7,6 @@ import {useRouter} from "next/navigation";
 export default function LoginForm({ action }: {action: (formData: FormData) => void}) {
     const [showPassword, setShowPassword] = useState(false);
 
-    const router = useRouter();
-
     const togglePassword = () => {
         setShowPassword(prev => !prev);
     };

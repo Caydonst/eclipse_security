@@ -1,42 +1,35 @@
+"use client"
 import styles from "./page.module.css";
-import LoginForm from "./loginForm"
-import Link from "next/link";
-import {users} from "../users"
-import { redirect } from "next/navigation";
+import {redirect} from "next/navigation"
+import {signIn, signOut, useSession} from "next-auth/react";
 
 export default function LoginPage() {
-    async function handleLogin(formData: FormData) {
-        "use server";
-        const email = formData.get("email");
-        const password = formData.get("password");
+    const { data: session } = useSession();
 
-        console.log(email, password);
-
-        const user = users.find(
-            (u) => u.email === email && u.password === password
-        );
-
-        if (user) {
-            // ✅ Redirect to their page
-            redirect(`/auth?user=${user.id}`);
-        } else {
-            // You can throw an error here, or later handle with error UI
-            throw new Error("Invalid credentials");
-        }
-
+    if (session) {
+        redirect("/vault")
     }
 
     return (
-        <div className={styles.home}>
+        <div className={styles.loginPageContainer}>
             <div className={styles.loginContainer}>
-                <div className={styles.header}>
-                    <h1>Eclipse</h1>
-                    <p>Security</p>
-                </div>
-                <LoginForm action={handleLogin}/>
-                <div className={styles.footer}>
-                    <p>Don&#39;t have an account?</p>
-                    <Link href={"/register"}>Register</Link>
+                <h1>Login</h1>
+                <hr />
+                <button className={styles.signInBtn} onClick={() => signIn("google")}>
+                    <img className={styles.googleImg}
+                         src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                         alt="Google logo"
+                    />
+                    Continue with Google
+                </button>
+                <hr />
+                <div className={styles.logoContainer}>
+                    <p>Eclipse</p>
+                    <p>
+                        Security
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464a256 256 0 1 0 0-512 256 256 0 1 0 0 512zM205.1 306.9c-28.1-28.1-28.1-73.7 0-101.8s73.7-28.1 101.8 0c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9c-46.9-46.9-122.8-46.9-169.7 0s-46.9 122.8 0 169.7 122.8 46.9 169.7 0c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0c-28.1 28.1-73.7 28.1-101.8 0z"/></svg>
+                    </p>
+                    <p>All Rights Reserved.</p>
                 </div>
             </div>
         </div>
