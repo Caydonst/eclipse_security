@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Rubik, sans-serif;
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #000 inset; /* your bg color */
+    box-shadow: 0 0 0 1000px #000 inset;
+    -webkit-text-fill-color: #fff; /* text color */
+    transition: background-color 9999s ease-in-out 0s; /* prevent flash */
+  }
+}
