@@ -1,24 +1,104 @@
 .vaultPage {
+    display: grid;
+    grid-template-rows: 80px 1fr;   /* Top row fixed 80px, bottom takes rest */
+    grid-template-columns: 300px 1fr; /* Left column fixed 300px, right takes rest */
+    height: 100vh; /* Full viewport height */
+}
+.topBar {
+    grid-column: 1 / -1;
+    background: #000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px;
+    gap: 50px;
+}
+.logoContainer {
+    color: #fff;
+}
+.searchContainer {
     width: 100%;
-    height: 100svh;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 0 14px;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.05);
 }
-.profileContainer {
+.searchIcon {
+    color: rgba(255, 255, 255, 0.4);
+    width: 22px;
+    height: 22px;
+}
+.searchInput {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 14px 0;
+    color: #fff;
+    outline: none;
+    font-size: 16px;
+}
+.sideBar {
+    grid-row: 2; /* Bottom row */
+    grid-column: 1; /* First column */
+    width: 300px;
+    background: #000;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
-    width: 300px;
-    height: 400px;
-    background: #080808;
-    border-radius: 16px;
-    gap: 50px;
+    padding: 20px;
     position: relative;
 }
-.profileContainer h1 {
+.sideBarButton {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    background: transparent;
     color: #fff;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 16px;
+}
+.sideBarIcon {
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+.sideBarButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.contentContainer {
+    grid-row: 2;
+    grid-column: 2;
+    background: #000;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: 1fr;
+    overflow: auto;
+    padding: 50px;
+    gap: 10px;
+}
+.cell {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    aspect-ratio: 1;
+    cursor: pointer;
+}
+.cell:hover {
+    border-color: #fff;
 }
 .logoutBtn {
     position: absolute;
@@ -35,4 +115,39 @@
 }
 .logoutBtn:hover {
     background: #c93636;
+}
+.logoutBtn:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+.dotLoader {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    height: 1em;
+}
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+}
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.6);
+    }
 }

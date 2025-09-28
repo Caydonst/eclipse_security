@@ -2,41 +2,19 @@
 import styles from "./page.module.css";
 import {redirect} from "next/navigation"
 import {signIn, useSession} from "next-auth/react";
-import LoginForm from "./loginForm";
+import SignupForm from "./signupForm";
 import Link from "next/link"
 import React from "react";
 import {useState} from "react";
 import Navbar from "../components/navbar/navbar"
 
-export default function LoginPage() {
-    const [error, setError] = useState(false);
+export default function SignupPage() {
     const [loading, setLoading] = useState(false);
 
     const { data: session } = useSession();
 
     if (session) {
         redirect("/vault")
-    }
-
-    async function handleSubmit(e: React.FormEvent) {
-        e.preventDefault();
-        const form = e.target as HTMLFormElement;
-        const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-        const password = (form.elements.namedItem("password") as HTMLInputElement).value;
-
-        const res = await signIn("credentials", {
-            redirect: false,
-            email,
-            password,
-        });
-
-        console.log(res);
-
-        if (!res.ok) {
-            setError(true);
-        } else {
-            setError(false);
-        }
     }
 
     const googleSignIn = async () => {
@@ -47,11 +25,11 @@ export default function LoginPage() {
     return (
         <>
             <Navbar />
-            <div className={styles.loginPageContainer}>
-                <div className={styles.loginContainer}>
+            <div className={styles.signupPageContainer}>
+                <div className={styles.signupContainer}>
                     <div className={styles.header}>
-                        <h1>Welcome back</h1>
-                        <p>Log into your Eclipse Security account.</p>
+                        <h1>Create account</h1>
+                        <p>Create your Eclipse Security account.</p>
                     </div>
                     <button className={styles.googleBtn} onClick={googleSignIn} disabled={loading}>
                         {loading ? (
@@ -66,7 +44,7 @@ export default function LoginPage() {
                                      src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
                                      alt="Google logo"
                                 />
-                                Sign in with Google
+                                Sign up with Google
                             </div>
                         )}
                     </button>
@@ -75,9 +53,9 @@ export default function LoginPage() {
                         <p>or</p>
                         <hr />
                     </div>
-                    <LoginForm handleSubmit={handleSubmit} error={error} />
+                    <SignupForm />
                     <div className={styles.footer}>
-                        <p>Don't have an account? <Link href={"/signup"}>Sign up</Link></p>
+                        <p>Already have an account? <Link href={"/login"}>Sign in</Link></p>
                     </div>
                 </div>
             </div>
