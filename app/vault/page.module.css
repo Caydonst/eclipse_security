@@ -46,7 +46,7 @@
 .sideBar {
     grid-row: 2; /* Bottom row */
     grid-column: 1; /* First column */
-    width: 300px;
+    width: 250px;
     background: #000;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;

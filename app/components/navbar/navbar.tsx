@@ -6,8 +6,11 @@ export default function Navbar() {
         <div className={styles.navbar}>
             <div className={styles.contentContainer}>
                 <div className={styles.logoContainer}>
-                    <p>Eclipse</p>
-                    <p>Security</p>
+                    <h1>Eclipse</h1>
+                </div>
+                <div className={styles.buttons}>
+                    <button>Log in</button>
+                    <button>Sign up</button>
                 </div>
             </div>
         </div>

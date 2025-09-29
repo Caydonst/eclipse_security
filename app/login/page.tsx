@@ -51,6 +51,8 @@ export default function LoginPage() {
             <Navbar />
             <div className={styles.loginPageContainer}>
                 <div className={styles.loginImgContainer}>
+                    <div className={styles.lightLeft}></div>
+                    <div className={styles.lightRight}></div>
                     <div className={styles.imgContainer}>
                         <Image className={styles.image} src={loginImg} alt={"login image"} />
                     </div>

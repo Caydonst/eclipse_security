@@ -28,7 +28,9 @@ export default function SignupPage() {
         <>
             <Navbar />
             <div className={styles.signupPageContainer}>
-                <div className={styles.loginImgContainer}>
+                <div className={styles.signupImgContainer}>
+                    <div className={styles.lightLeft}></div>
+                    <div className={styles.lightRight}></div>
                     <div className={styles.imgContainer}>
                         <Image className={styles.image} src={loginImg} alt={"login image"}/>
                     </div>
