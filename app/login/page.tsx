@@ -7,6 +7,8 @@ import Link from "next/link"
 import React from "react";
 import {useState} from "react";
 import Navbar from "../components/navbar/navbar"
+import Image from "next/image";
+import loginImg from "../assets/image1.png"
 
 export default function LoginPage() {
     const [error, setError] = useState(false);
@@ -48,6 +50,11 @@ export default function LoginPage() {
         <>
             <Navbar />
             <div className={styles.loginPageContainer}>
+                <div className={styles.loginImgContainer}>
+                    <div className={styles.imgContainer}>
+                        <Image className={styles.image} src={loginImg} alt={"login image"} />
+                    </div>
+                </div>
                 <div className={styles.loginContainer}>
                     <div className={styles.header}>
                         <h1>Welcome back</h1>

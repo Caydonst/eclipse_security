@@ -7,6 +7,8 @@ import Link from "next/link"
 import React from "react";
 import {useState} from "react";
 import Navbar from "../components/navbar/navbar"
+import Image from "next/image";
+import loginImg from "@/app/assets/image1.png";
 
 export default function SignupPage() {
     const [loading, setLoading] = useState(false);
@@ -26,6 +28,11 @@ export default function SignupPage() {
         <>
             <Navbar />
             <div className={styles.signupPageContainer}>
+                <div className={styles.loginImgContainer}>
+                    <div className={styles.imgContainer}>
+                        <Image className={styles.image} src={loginImg} alt={"login image"}/>
+                    </div>
+                </div>
                 <div className={styles.signupContainer}>
                     <div className={styles.header}>
                         <h1>Create account</h1>
@@ -49,11 +56,11 @@ export default function SignupPage() {
                         )}
                     </button>
                     <div className={styles.divider}>
-                        <hr />
+                        <hr/>
                         <p>or</p>
-                        <hr />
+                        <hr/>
                     </div>
-                    <SignupForm />
+                    <SignupForm/>
                     <div className={styles.footer}>
                         <p>Already have an account? <Link href={"/login"}>Sign in</Link></p>
                     </div>

@@ -3,19 +3,43 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    height: calc(100svh - 80px);
+}
+.loginImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    padding: 40px;
+}
+.imgContainer {
+    height: 65%;
+    transform: rotate(-10deg) skew(25deg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -20px 20px 20px mediumpurple;
+    border-radius: 20px;
+    overflow: hidden;
+
+}
+.image {
+    height: 100%;
+    width: auto;
 }
 .loginContainer {
     background: transparent;
-    border-radius: 16px;
     padding: 40px;
-    width: 800px;
+    width: 30%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    border: 1px solid rgba(255, 255, 255, 0.1);
     gap: 40px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 .header {
     display: flex;
