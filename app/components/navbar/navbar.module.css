@@ -48,3 +48,19 @@
 .buttons button:hover {
     opacity: 0.8;
 }
+@media (max-width: 500px) {
+    .logoContainer h1 {
+        font-size: 24px;
+    }
+    .buttons button {
+        padding: 10px;
+        width: 80px;
+        font-size: 14px;
+        color: #000;
+        border: none;
+        background: #fff;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+}

@@ -61,15 +61,16 @@
 }
 .loginContainer {
     background: transparent;
-    padding: 40px;
+    padding: 50px 40px;
     width: 700px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     gap: 40px;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: auto;
 }
 .header {
     display: flex;
@@ -266,7 +267,7 @@
     .loginContainer {
         background: transparent;
         border: none;
-        padding: 0 30px;
+        padding: 50px 30px;
         width: 100%;
         max-width: 800px;
     }

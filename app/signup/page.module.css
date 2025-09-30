@@ -63,11 +63,11 @@
 }
 .signupContainer {
     background: transparent;
-    padding: 40px;
+    padding: 50px 40px;
     width: 700px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     gap: 40px;
@@ -281,7 +281,7 @@
     .signupContainer {
         background: transparent;
         border: none;
-        padding: 0 30px;
+        padding: 50px 30px;
         width: 100%;
         max-width: 800px;
     }

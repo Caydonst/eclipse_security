@@ -1,60 +1,25 @@
 .vaultPage {
-    display: grid;
-    grid-template-rows: 80px 1fr;   /* Top row fixed 80px, bottom takes rest */
-    grid-template-columns: 300px 1fr; /* Left column fixed 300px, right takes rest */
-    height: 100vh; /* Full viewport height */
-}
-.topBar {
-    grid-column: 1 / -1;
-    background: #000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    height: 80px;
+    height: 100svh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 50px;
-    gap: 50px;
-}
-.logoContainer {
-    color: #fff;
-}
-.searchContainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    padding: 0 14px;
-    gap: 14px;
-    background: rgba(255, 255, 255, 0.05);
-}
-.searchIcon {
-    color: rgba(255, 255, 255, 0.4);
-    width: 22px;
-    height: 22px;
-}
-.searchInput {
-    width: 100%;
-    background: transparent;
-    border: none;
-    padding: 14px 0;
-    color: #fff;
-    outline: none;
-    font-size: 16px;
 }
 .sideBar {
-    grid-row: 2; /* Bottom row */
-    grid-column: 1; /* First column */
-    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
     background: #000;
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: start;
-    align-items: center;
+    align-items: start;
     flex-direction: column;
-    padding: 20px;
-    position: relative;
+    padding: 0 20px;
+    z-index: 2;
+}
+.sideBar h1 {
+    color: #fff;
+    padding: 30px 20px;
 }
 .sideBarButton {
     width: 100%;
@@ -70,6 +35,7 @@
     cursor: pointer;
     gap: 10px;
     font-size: 16px;
+    transition: 0.2s;
 }
 .sideBarIcon {
     color: #fff;
@@ -80,25 +46,158 @@
 .sideBarButton:hover {
     background: rgba(255, 255, 255, 0.1);
 }
-.contentContainer {
-    grid-row: 2;
-    grid-column: 2;
+.topBar {
+    position: fixed;
+    top: 0;
+    left: 300px;
+    right: 600px;
     background: #000;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding: 0 50px;
+    height: 80px;
+    gap: 50px;
+    box-shadow: 0 16px 14px 0 #000;
+    z-index: 1;
+}
+.logoContainer {
+    color: #fff;
+}
+.searchContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.searchIcon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.4);
+    width: 22px;
+    height: 22px;
+}
+.searchInput {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 16px 50px;
+    color: #fff;
+    outline: none;
+    font-size: 16px;
+    border: 1px solid transparent;
+    border-radius: 50px;
+}
+.searchInput:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: transparent;
+}
+.searchInput:focus {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: transparent;
+}
+.contentContainer {
+    position: absolute;
+    top: 80px;
+    right: 600px;
+    left: 300px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-auto-rows: 1fr;
-    overflow: auto;
-    padding: 50px;
+    padding: 50px 100px;
     gap: 10px;
 }
 .cell {
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    border-radius: 10px;
     aspect-ratio: 1;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    transition: 0.2s;
+}
+.logoContainer {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+.cellHeader {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.headerMenuBtn {
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+}
+.favBtn {
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+}
+.favBtn svg {
+    fill: #fff ;
+    width: 20px;
+}
+.favBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.headerMenuBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.headerMenuIcon {
+    color: #fff;
+    width: 26px;
+}
+.cell img {
+    width: 30px;
+}
+.cell h3 {
+    color: #fff;
+}
+.cell p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    text-overflow: ellipsis;
 }
 .cell:hover {
     border-color: #fff;
+}
+.cardArea {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 600px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1;
 }
 .logoutBtn {
     position: absolute;
@@ -150,4 +249,18 @@
     40% {
         transform: scale(1.6);
     }
+}
+.cardContainer {
+    position: fixed;
+    bottom: 0;
+    width: 560px;
+    background: #000;
+    top: 20px;
+    right: 20px;
+    border-radius: 20px 20px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+.open {
+    transform: translateY(100%);
 }
