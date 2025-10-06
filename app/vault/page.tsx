@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import VaultClient from "./VaultClient";
+import {accounts} from "./passwords"
 
 
 export default async function VaultPage() {
@@ -11,5 +12,5 @@ export default async function VaultPage() {
         redirect("/login");
     }
 
-    return <VaultClient />;
+    return <VaultClient accounts={accounts} />;
 }
