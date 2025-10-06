@@ -1,11 +1,9 @@
-:root {
-    --content-right: 540px;
-    --content-left: 250px;
-    --content-left-small: 80px;
-}
 .vaultPage {
     height: 100svh;
     display: flex;
+    --content-right: 540px;
+    --content-left: 250px;
+    --content-left-small: 80px;
 }
 .sideBar {
     position: fixed;
@@ -24,7 +22,11 @@
 }
 .sideBar h1 {
     color: #fff;
-    padding: 30px 20px;
+    padding: 0 20px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .sideBarButton {
     width: 100%;
@@ -82,13 +84,17 @@
 .sideBarSmallButton:hover {
     background: rgba(255, 255, 255, 0.1);
 }
+.sideBarLogoContainer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .logo {
     width: 30px;
     height: auto;
     filter: invert(100%);
     background: #fff;
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 .topBar {
     position: fixed;
@@ -149,12 +155,15 @@
     right: var(--content-right);
     left: var(--content-left);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 250px));
+    justify-content: center;
     grid-auto-rows: 1fr;
     padding: 30px 50px;
     gap: 10px;
 }
 .cell {
+    width: 100%;
+    max-width: 300px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     aspect-ratio: 1;
@@ -333,7 +342,7 @@
     .cell {
         flex-direction: row;
         justify-content: space-between;
-        width: 100%;
+        max-width: 100%;
         padding: 20px;
         aspect-ratio: unset;
         gap: 20px;
@@ -363,5 +372,90 @@
     .accountCardInfo h3,
     .accountCardInfo p {
         max-width: 100%;
+    }
+}
+@media (max-width: 1050px) {
+    .vaultPage {
+        --content-right: 0;
+    }
+    .cardArea {
+        z-index: 20;
+    }
+}
+@media (max-width: 500px) {
+    .vaultPage {
+        --content-right: 0;
+        --content-left: 0;
+    }
+    .sideBarSmall {
+        top: unset;
+        width: 100%;
+        height: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        padding: 0 10px;
+        z-index: 2;
+    }
+    .sideBarIcon {
+        color: rgba(255, 255, 255, 0.4);
+    }
+    .sideBarSmallButton:hover {
+        background: unset;
+    }
+    .logoutBtn {
+        display: none;
+    }
+    .sideBarLogoContainer {
+        display: none;
+    }
+    .contentContainer {
+        top: 130px;
+        left: var(--content-left);
+        padding: 30px 10px;
+    }
+    .topBar {
+        top: 50px;
+        left: var(--content-left);
+        padding: 0 10px;
+    }
+    .mobileHeader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 50px;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .mobileHeader h1 {
+        font-size: 20px;
+        color: #fff;
+    }
+    .profileBtn {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid transparent;
+    }
+    .userIcon {
+        width: 20px;
+        height: 20px;
+        color: rgba(255, 255, 255, 0.5);
     }
 }

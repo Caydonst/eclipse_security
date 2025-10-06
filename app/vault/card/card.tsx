@@ -1,7 +1,8 @@
 import styles from "./page.module.css"
 import Image from "next/image"
+import {XMarkIcon} from "@heroicons/react/24/outline"
 
-export default function Card({ open, account }: { open: boolean, account: any }) {
+export default function Card({ open, setOpen, account }: { open: boolean, setOpen: any, account: any }) {
     return (
         <div className={open ? styles.cardContainer : `${styles.cardContainer} ${styles.open}`}>
             <div className={styles.cardHeader}>
@@ -9,7 +10,7 @@ export default function Card({ open, account }: { open: boolean, account: any })
                     <img src={"https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"} alt={"Google logo"} />
                 </div>
                 <div className={styles.headerButtons}>
-
+                    <button className={styles.closeBtn} onClick={() => setOpen(false)}><XMarkIcon className={styles.closeIcon} /></button>
                 </div>
             </div>
             <div className={styles.infoContainer}>
