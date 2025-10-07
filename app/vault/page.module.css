@@ -20,9 +20,14 @@
     padding: 0 20px;
     z-index: 2;
 }
+.sideBarHeader {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+}
 .sideBar h1 {
     color: #fff;
-    padding: 0 20px;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -95,6 +100,7 @@
     height: auto;
     filter: invert(100%);
     background: #fff;
+    margin-left: 20px;
 }
 .topBar {
     position: fixed;
@@ -310,6 +316,12 @@
 .dot:nth-child(3) {
     animation-delay: 0.4s;
 }
+.mobileHeader {
+    display: none;
+}
+.mobilePageHeader {
+    display: none;
+}
 @keyframes bounce {
     0%, 80%, 100% {
         transform: scale(1);
@@ -330,6 +342,9 @@
     }
     .contentContainer {
         left: var(--content-left-small);
+    }
+    .logo {
+        margin: 0;
     }
 }
 @media (max-width: 1285px) {
@@ -363,7 +378,6 @@
         justify-content: space-between;
         align-items: center;
         gap: 10px;
-
         padding: 0;
     }
     .accountCardInfo {
@@ -417,20 +431,23 @@
         display: none;
     }
     .contentContainer {
-        top: 130px;
+        top: 80px;
         left: var(--content-left);
         padding: 30px 10px;
+        padding-bottom: 70px;
     }
     .topBar {
         top: 50px;
         left: var(--content-left);
         padding: 0 10px;
+        display: none;
     }
     .mobileHeader {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
+        background: #000;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -438,10 +455,33 @@
         height: 50px;
         width: 100%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+    .mobileLogoContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .mobileLogo {
+        width: 24px;
+        height: auto;
+        filter: invert(100%);
+        background: #fff;
     }
     .mobileHeader h1 {
         font-size: 20px;
         color: #fff;
+    }
+    .mobileHeaderRight {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    .mobileSearchBtn {
+        border: none;
+        background: transparent;
     }
     .profileBtn {
         width: 34px;
@@ -457,5 +497,26 @@
         width: 20px;
         height: 20px;
         color: rgba(255, 255, 255, 0.5);
+    }
+    .mobilePageHeader {
+        position: fixed;
+        top: 50px;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        z-index: 1;
+        background: linear-gradient(to bottom, #000, transparent);
+    }
+    .mobileSearchIcon {
+        width: 24px;
+        height: 24px;
+        color: #fff;
+    }
+    .mobilePageHeader h1 {
+        color: #fff;
+        font-size: 20px;
     }
 }
