@@ -92,11 +92,11 @@
     .cardContainer {
         left: 0;
         width: 100%;
-        top: 10%;
+        top: 5%;
         border: unset;
-        border-right: 1px solid #fff;
-        border-left: 1px solid #fff;
-        border-top: 1px solid #fff;
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 10px 10px 0 0;
     }
 }

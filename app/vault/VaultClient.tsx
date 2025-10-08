@@ -40,11 +40,23 @@ export default function VaultClient({ accounts }: { accounts: any }) {
     return (
         <div className={styles.vaultPage}>
             <div className={styles.mobileHeader}>
-                <h1>Eclipse</h1>
-                <button className={styles.profileBtn}><UserIcon className={styles.userIcon} /></button>
+                <div className={styles.mobileLogoContainer}>
+                    <Image src={eclipse} alt={""} className={styles.mobileLogo}/>
+                    <h1>Eclipse</h1>
+                </div>
+                <div className={styles.mobileHeaderRight}>
+                    <button className={styles.mobileSearchBtn}><MagnifyingGlassIcon className={styles.mobileSearchIcon} /></button>
+                    <button className={styles.profileBtn}><UserIcon className={styles.userIcon} /></button>
+                </div>
+            </div>
+            <div className={styles.mobilePageHeader}>
+                <h1>All Items</h1>
             </div>
             <div className={styles.sideBar}>
-                <h1>Eclipse</h1>
+                <div className={styles.sideBarHeader}>
+                    <Image src={eclipse} alt={""} className={styles.logo}/>
+                    <h1>Eclipse</h1>
+                </div>
                 <button className={styles.sideBarButton}><ListBulletIcon className={styles.sideBarIcon}/>All Items
                 </button>
                 <button className={styles.sideBarButton}><LockClosedIcon className={styles.sideBarIcon}/>Passwords
@@ -54,11 +66,14 @@ export default function VaultClient({ accounts }: { accounts: any }) {
                 <button className={styles.sideBarButton}><BuildingLibraryIcon className={styles.sideBarIcon}/>Bank
                     Accounts
                 </button>
+                <button className={styles.sideBarButton}><StarIcon className={styles.sideBarIcon}/>
+                    Favorites
+                </button>
                 <LogoutBtn/>
             </div>
             <div className={styles.sideBarSmall}>
                 <div className={styles.sideBarLogoContainer}>
-                    <Image src={eclipse} alt={""} className={styles.logo} />
+                    <Image src={eclipse} alt={""} className={styles.logo}/>
                 </div>
                 <button className={styles.sideBarSmallButton}><ListBulletIcon className={styles.sideBarIcon}/>
                 </button>
@@ -67,6 +82,8 @@ export default function VaultClient({ accounts }: { accounts: any }) {
                 <button className={styles.sideBarSmallButton}><CreditCardIcon className={styles.sideBarIcon}/>
                 </button>
                 <button className={styles.sideBarSmallButton}><BuildingLibraryIcon className={styles.sideBarIcon}/>
+                </button>
+                <button className={styles.sideBarSmallButton}><StarIcon className={styles.sideBarIcon}/>
                 </button>
                 <LogoutBtn/>
             </div>
