@@ -3,18 +3,13 @@ import styles from "./page.module.css"
 import LogoutBtn from "./LogoutBtn"
 import eclipse from "../assets/eclipse.png"
 import Image from 'next/image';
-import {MagnifyingGlassIcon} from "@heroicons/react/24/outline";
-import {BuildingLibraryIcon} from "@heroicons/react/24/outline";
-import {CreditCardIcon} from "@heroicons/react/24/outline";
-import {LockClosedIcon} from "@heroicons/react/24/outline";
-import {ListBulletIcon} from "@heroicons/react/24/outline";
-import {EllipsisHorizontalIcon, StarIcon, UserIcon} from "@heroicons/react/24/outline";
+import {MagnifyingGlassIcon, BuildingLibraryIcon, CreditCardIcon, LockClosedIcon, ListBulletIcon, EllipsisHorizontalIcon, StarIcon, UserIcon} from "@heroicons/react/24/outline";
 import React from "react";
 import Card from "./card/card";
 import {useState} from "react";
 import AccountCard from "./AccountCard";
 
-export default function VaultClient({ accounts }) {
+export default function VaultClient({ accounts }: { accounts: any }) {
     const [open, setOpen] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState(1);
     const [isAnimating, setIsAnimating] = useState(false);
