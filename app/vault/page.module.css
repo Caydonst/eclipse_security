@@ -19,6 +19,7 @@
     flex-direction: column;
     padding: 0 20px;
     z-index: 2;
+    gap: 5px;
 }
 .sideBarHeader {
     display: flex;
@@ -70,6 +71,7 @@
     flex-direction: column;
     width: 80px;
     z-index: 2;
+    gap: 5px;
 }
 .sideBarSmall h1 {
     color: #fff;
@@ -155,6 +157,7 @@
     border-color: rgba(255, 255, 255, 0.1);
     background: transparent;
 }
+
 .contentContainer {
     position: absolute;
     top: 80px;
@@ -166,6 +169,15 @@
     grid-auto-rows: 1fr;
     padding: 30px 50px;
     gap: 10px;
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 .cell {
     width: 100%;
@@ -180,6 +192,20 @@
     flex-direction: column;
     gap: 10px;
     position: relative;
+}
+.cardAccountSelected {
+    outline: rgba(255, 255, 255, 0.2) solid 5px;
+    border-color: #fff;
+}
+.sidebarSelected {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+.sideBarSmallSelected {
+    background: rgba(255, 255, 255, 0.1);
+}
+.sidebarIconSelected > * {
+    color: #fff;
 }
 .cell img {
     width: 30px;
@@ -227,12 +253,19 @@
     height: 34px;
     cursor: pointer;
 }
-.favBtn svg {
+.starIcon {
     fill: #fff ;
+    width: 20px;
+}
+.starIconSelected {
+    fill: yellow;
     width: 20px;
 }
 .favBtn:hover {
     background: rgba(255, 255, 255, 0.1);
+}
+.favBtn:hover .starIcon {
+    fill: yellow;
 }
 .headerMenuBtn:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -377,7 +410,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 10px;
+        gap: 0;
         padding: 0;
     }
     .accountCardInfo {
@@ -394,6 +427,7 @@
     }
     .cardArea {
         z-index: 20;
+        border: none;
     }
 }
 @media (max-width: 500px) {
@@ -418,11 +452,15 @@
         padding: 0 10px;
         z-index: 2;
     }
+    .cell:hover {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
     .sideBarIcon {
         color: rgba(255, 255, 255, 0.4);
     }
-    .sideBarSmallButton:hover {
-        background: unset;
+    .sideBarSmallButton {
+        height: 44px;
+        width: 44px;
     }
     .logoutBtn {
         display: none;
@@ -431,7 +469,7 @@
         display: none;
     }
     .contentContainer {
-        top: 80px;
+        top: 66px;
         left: var(--content-left);
         padding: 30px 10px;
         padding-bottom: 70px;
@@ -451,10 +489,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 10px;
         height: 50px;
         width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         z-index: 1;
     }
     .mobileLogoContainer {
@@ -502,13 +539,14 @@
         position: fixed;
         top: 50px;
         width: 100%;
-        height: 60px;
+        height: 36px;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: start;
         padding: 0 20px;
         z-index: 1;
-        background: linear-gradient(to bottom, #000, transparent);
+        background: #000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     .mobileSearchIcon {
         width: 24px;
@@ -517,6 +555,10 @@
     }
     .mobilePageHeader h1 {
         color: #fff;
-        font-size: 20px;
+        font-size: 18px;
+    }
+    .cardAccountSelected {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.1);
     }
 }
