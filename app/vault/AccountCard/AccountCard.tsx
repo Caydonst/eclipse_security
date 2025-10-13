@@ -1,5 +1,5 @@
 import styles from "@/app/vault/page.module.css";
-import {EllipsisHorizontalIcon, StarIcon as StarOutline} from "@heroicons/react/24/outline";
+import {EllipsisHorizontalIcon, StarIcon as StarOutline, XMarkIcon} from "@heroicons/react/24/outline";
 import {StarIcon as StarSolid} from "@heroicons/react/24/solid";
 import React from "react";
 
@@ -29,7 +29,7 @@ export default function AccountCard({ index, handleOpenAccount, account, isFavor
                     )}
 
                 </button>
-                <button className={styles.headerMenuBtn}><EllipsisHorizontalIcon className={styles.headerMenuIcon}/></button>
+                <button className={styles.headerDeleteBtn}><XMarkIcon className={styles.headerDeleteIcon}/></button>
             </div>
         </div>
     )

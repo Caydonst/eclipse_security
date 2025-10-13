@@ -15,6 +15,7 @@
     align-items: start;
     flex-direction: column;
     gap: 30px;
+    overflow: hidden;
 }
 .open {
     transform: translateY(100%);
@@ -89,14 +90,66 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 16px;
 }
+.cardPasswordContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 .showPasswordBtn {
     background: transparent;
     border: none;
+    cursor: pointer;
 }
 .eyeIcon {
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     color: #fff;
+}
+.copyBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.copyBtn svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+}
+.passwordCopiedMessage {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    right: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #000;
+    border-radius: 50px;
+    height: 40px;
+    transform: translateY(-200%);
+}
+.animate {
+    animation: moveDown 3s;
+}
+.passwordCopiedMessage p {
+    color: mediumspringgreen;
+}
+@keyframes moveDown {
+    0% {
+        transform: translateY(-200%);
+    }
+    10% {
+        transform: translateY(0);
+    }
+    90% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-200%);
+    }
 }
 @media (max-width: 1050px) {
     .cardContainer {
@@ -109,5 +162,11 @@
         border-top: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 10px 10px 0 0;
         box-shadow: none;
+    }
+}
+@media (max-width: 500px) {
+    .passwordCopiedMessage {
+        left: 80px;
+        right: 80px;
     }
 }

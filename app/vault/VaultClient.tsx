@@ -22,6 +22,7 @@ export default function VaultClient({ accounts }: { accounts: any }) {
     const [isSelected, setIsSelected] = useState<number>();
     const [selected, setSelected] = useState<string>("all");
     const [routeTitle, setRouteTitle] = useState<string>("");
+    const [copiedAnimation, setCopiedAnimation] = useState<boolean>(false);
 
     const toggleFavorited = (id: number) => {
         setFavorites((prev) => prev.includes(id)
@@ -39,6 +40,7 @@ export default function VaultClient({ accounts }: { accounts: any }) {
             setOpen(true);
         } else if (selectedAccount == account) {
             setOpen(false);
+            setIsSelected(-1);
         } else if (selectedAccount !== account) {
             setIsAnimating(true);
             setOpen(false);
@@ -49,6 +51,7 @@ export default function VaultClient({ accounts }: { accounts: any }) {
                 setIsAnimating(false);
             }, 400);
         }
+        setCopiedAnimation(false);
     }
 
     return (
@@ -75,7 +78,7 @@ export default function VaultClient({ accounts }: { accounts: any }) {
             </div>
             <Route accounts={accounts} favorites={favorites} handleOpenAccount={handleOpenAccount} toggleFavorited={toggleFavorited} isSelected={isSelected} selected={selected} />
             <div className={styles.cardArea}>
-                <Card open={open} setOpen={setOpen} account={accounts[selectedAccount-1]} setIsSelected={setIsSelected} />
+                <Card open={open} setOpen={setOpen} account={accounts[selectedAccount-1]} setIsSelected={setIsSelected} copiedAnimation={copiedAnimation} setCopiedAnimation={setCopiedAnimation} />
             </div>
         </div>
     );

@@ -231,10 +231,10 @@
     align-items: center;
     border-radius: 6px;
 }
-.headerMenuBtn {
+.headerDeleteBtn {
     background: transparent;
     border: none;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -267,10 +267,10 @@
 .favBtn:hover .starIcon {
     fill: yellow;
 }
-.headerMenuBtn:hover {
+.headerDeleteBtn:hover {
     background: rgba(255, 255, 255, 0.1);
 }
-.headerMenuIcon {
+.headerDeleteIcon {
     color: #fff;
     width: 26px;
 }
@@ -306,7 +306,7 @@
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1;
 }
-.profileBtn {
+.profileCard {
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -322,7 +322,7 @@
     cursor: pointer;
     transition: 0.3s;
 }
-.profileBtnInner {
+.profileCardInner {
     position: absolute;
     left: 10px;
     right: 10px;
@@ -331,7 +331,7 @@
     align-items: center;
     gap: 10px;
 }
-.profileBtnInner p {
+.profileCardInner p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -345,7 +345,7 @@
     background: gray;
     flex-shrink: 0;
 }
-.profileBtn:hover {
+.profileCard:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 .dotLoader {
@@ -443,6 +443,9 @@
         max-width: 100%;
     }
 }
+.cell:hover .headerDeleteBtn {
+    display: flex;
+}
 @media (max-width: 1050px) {
     .vaultPage {
         --content-right: 0;
@@ -477,6 +480,9 @@
     .cell:hover {
         border-color: rgba(255, 255, 255, 0.1);
     }
+    .headerDeleteBtn {
+        display: flex;
+    }
     .sideBarIcon {
         color: rgba(255, 255, 255, 0.4);
     }
@@ -484,7 +490,7 @@
         height: 44px;
         width: 44px;
     }
-    .logoutBtn {
+    .profileCard {
         display: none;
     }
     .sideBarLogoContainer {

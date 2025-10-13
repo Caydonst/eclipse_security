@@ -12,7 +12,7 @@ export default function ProfileCard() {
     };
 
     return (
-        <button className={styles.profileBtn} onClick={logOut} disabled={loading}>
+        <button className={styles.profileCard} onClick={logOut} disabled={loading}>
             {loading ? (
                 <div className={styles.dotLoader}>
                     <div className={styles.dot}></div>
@@ -20,7 +20,7 @@ export default function ProfileCard() {
                     <div className={styles.dot}></div>
                 </div>
             ) : (
-                <div className={styles.profileBtnInner}>
+                <div className={styles.profileCardInner}>
                     <div className={styles.profileImg}></div>
                     <p>testemail1234567890@gmail.com</p>
                 </div>
