@@ -16,7 +16,7 @@ import {
     BuildingLibraryIcon as BuildingLibrarySolid,
     StarIcon as StarSolid,
 } from "@heroicons/react/24/solid";
-import LogoutBtn from "../LogoutBtn";
+import ProfileCard from "../profileCard";
 
 export default function SidebarSmall({selected, setSelected, setRouteTitle}: {selected: string, setSelected: any, setRouteTitle: any}) {
 
@@ -54,7 +54,7 @@ export default function SidebarSmall({selected, setSelected, setRouteTitle}: {se
                 </button>
             ))}
 
-            <LogoutBtn />
+            <ProfileCard />
         </div>
     );
 }

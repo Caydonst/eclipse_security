@@ -1,6 +1,6 @@
 import styles from "./page.module.css"
 import Image from "next/image"
-import {XMarkIcon} from "@heroicons/react/24/outline"
+import {XMarkIcon, EyeIcon, CopyIcon} from "@heroicons/react/24/outline"
 
 export default function Card({ open, setOpen, account, setIsSelected }: { open: boolean, setOpen: any, account: any, setIsSelected: any }) {
 
@@ -28,6 +28,8 @@ export default function Card({ open, setOpen, account, setIsSelected }: { open: 
                 <div className={styles.inputsContainer}>
                     <label htmlFor="passwordInput">Password</label>
                     <input id={"passwordInput"} type={"password"} value={account.password}/>
+                    <button className={styles.showPasswordBtn}><EyeIcon className={styles.eyeIcon} /></button>
+                    <button></button>
                 </div>
             </div>
         </div>

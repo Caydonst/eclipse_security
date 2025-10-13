@@ -1,6 +1,6 @@
 "use client"
 import styles from "./page.module.css"
-import LogoutBtn from "./LogoutBtn"
+import ProfileCard from "./profileCard"
 import eclipse from "../assets/eclipse.png"
 import Image from 'next/image';
 import {
