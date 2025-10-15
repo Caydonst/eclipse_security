@@ -1,6 +1,7 @@
 import styles from "../page.module.css"
 import AccountCard from "@/app/vault/AccountCard/AccountCard";
 import React from "react";
+import ProfilePage from "../profilePage/profilePage";
 
 export default function Route({ accounts, favorites, handleOpenAccount, toggleFavorited, isSelected, selected }: {accounts: any, favorites: number[], handleOpenAccount: any, toggleFavorited: any, isSelected: number, selected: string}) {
     return (
@@ -65,6 +66,12 @@ export default function Route({ accounts, favorites, handleOpenAccount, toggleFa
                                 isSelected={isSelected}
                             />
                         ))}
+                </div>
+            }
+            {selected === "profile"
+                &&
+                <div className={styles.contentContainer}>
+                    <ProfilePage />
                 </div>
             }
         </div>

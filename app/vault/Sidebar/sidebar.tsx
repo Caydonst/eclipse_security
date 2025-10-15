@@ -30,10 +30,14 @@ export default function Sidebar({selected, setSelected, setRouteTitle}: {selecte
 
     const handleBtnClick = (id: string) => {
         setSelected(id);
-        const obj: any = buttons.find(button => button.id === id);
-        const title: string = obj.label;
-        console.log(title);
-        setRouteTitle(title);
+        if (id === "profile") {
+            setRouteTitle("Profile");
+        } else {
+            const obj: any = buttons.find(button => button.id === id);
+            const title: string = obj.label;
+            console.log(title);
+            setRouteTitle(title);
+        }
     }
 
     return (
@@ -56,7 +60,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle}: {selecte
                         {btn.label}
                     </button>
                 ))}
-                <ProfileCard />
+                <ProfileCard handleBtnClick={handleBtnClick} />
             </div>
             <div className={styles.sideBarSmall}>
                 <div className={styles.sideBarLogoContainer}>
@@ -74,7 +78,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle}: {selecte
                   </span>
                     </button>
                 ))}
-                <ProfileCard />
+                <ProfileCard handleBtnClick={handleBtnClick} />
             </div>
         </>
     );

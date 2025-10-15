@@ -1,0 +1,62 @@
+.profilePage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.logoutBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    height: 50px;
+    background: #f54242;
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.logoutBtn:hover {
+    opacity: 0.8;
+}
+.logoutBtn:disabled {
+    opacity: 0.8;
+    pointer-events: none;
+}
+.dotLoader {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    height: 1em;
+}
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+}
+.dot:nth-child(1) {
+    animation-delay: 0s;
+}
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.6);
+    }
+}
