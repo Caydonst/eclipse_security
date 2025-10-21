@@ -26,7 +26,7 @@
     opacity: 0.8;
 }
 .logoutBtn:disabled {
-    opacity: 0.8;
+    opacity: 0.5;
     pointer-events: none;
 }
 .dotLoader {
@@ -58,5 +58,11 @@
     }
     40% {
         transform: scale(1.6);
+    }
+}
+@media (max-width: 500px) {
+    .profilePage {
+        bottom: 46px;
+        top: 21px;
     }
 }

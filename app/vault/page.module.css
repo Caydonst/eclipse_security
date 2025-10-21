@@ -352,9 +352,6 @@
 .mobileHeader {
     display: none;
 }
-.mobilePageHeader {
-    display: none;
-}
 @media (max-width: 1500px) {
     .topBar {
         left: var(--content-left-small);
@@ -483,7 +480,17 @@
         top: 0;
         left: 0;
         right: 0;
-        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1;
+    }
+    .mobileHeaderTop {
+        background: transparent;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -504,7 +511,7 @@
         filter: invert(100%);
         background: #fff;
     }
-    .mobileHeader h1 {
+    .mobileHeaderTop h1 {
         font-size: 20px;
         color: #fff;
     }
@@ -526,16 +533,14 @@
         justify-content: center;
         align-items: center;
         background: rgba(255, 255, 255, 0.2);
-        border: 1px solid transparent;
+        border: 1px solid #fff;
     }
     .userIcon {
         width: 20px;
         height: 20px;
         color: rgba(255, 255, 255, 0.5);
     }
-    .mobilePageHeader {
-        position: fixed;
-        top: 50px;
+    .mobileHeaderBottom {
         width: 100%;
         height: 36px;
         display: flex;
@@ -543,15 +548,14 @@
         align-items: start;
         padding: 0 20px;
         z-index: 1;
-        background: #000;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
     }
     .mobileSearchIcon {
         width: 24px;
         height: 24px;
         color: #fff;
     }
-    .mobilePageHeader h1 {
+    .mobileHeaderBottom h1 {
         color: #fff;
         font-size: 18px;
     }

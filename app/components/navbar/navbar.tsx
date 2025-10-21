@@ -1,5 +1,6 @@
 "use client"
 import styles from "./navbar.module.css"
+import Link from "next/link"
 
 export default function Navbar() {
     return (
@@ -9,8 +10,8 @@ export default function Navbar() {
                     <h1>Eclipse</h1>
                 </div>
                 <div className={styles.buttons}>
-                    <button>Log in</button>
-                    <button>Sign up</button>
+                    <Link href={"/login"}>Log in</Link>
+                    <Link href={"/signup"}>Sign up</Link>
                 </div>
             </div>
         </div>

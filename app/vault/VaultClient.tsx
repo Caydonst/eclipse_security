@@ -9,10 +9,10 @@ import {
 } from "@heroicons/react/24/outline";
 import Sidebar from "./Sidebar/sidebar"
 import Route from "./VaultRoutes/route"
-import React from "react";
 import Card from "./card/card";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import AccountCard from "./AccountCard/AccountCard";
+import SearchBar from "./SearchBar/searchBar"
 
 export default function VaultClient({ accounts }: { accounts: any }) {
     const [open, setOpen] = useState<boolean>(false);
@@ -23,6 +23,8 @@ export default function VaultClient({ accounts }: { accounts: any }) {
     const [selected, setSelected] = useState<string>("all");
     const [routeTitle, setRouteTitle] = useState<string>("");
     const [copiedAnimation, setCopiedAnimation] = useState<boolean>(false);
+    const [searchQuery, setSearchQuery] = useState<string>("");
+    const [searchAccounts, setSearchAccounts] = useState([]);
 
     const toggleFavorited = (id: number) => {
         setFavorites((prev) => prev.includes(id)
@@ -54,29 +56,35 @@ export default function VaultClient({ accounts }: { accounts: any }) {
         setCopiedAnimation(false);
     }
 
+    const handleProfileClick = (id: string) => {
+        setSelected(id);
+        setRouteTitle("Profile");
+    }
+
     return (
         <div className={styles.vaultPage}>
             <div className={styles.mobileHeader}>
-                <div className={styles.mobileLogoContainer}>
-                    <Image src={eclipse} alt={""} className={styles.mobileLogo}/>
-                    <h1>Eclipse</h1>
+                <div className={styles.mobileHeaderTop}>
+                    <div className={styles.mobileLogoContainer}>
+                        <Image src={eclipse} alt={""} className={styles.mobileLogo}/>
+                        <h1>Eclipse</h1>
+                    </div>
+                    <div className={styles.mobileHeaderRight}>
+                        <button className={styles.mobileSearchBtn}><MagnifyingGlassOutline
+                            className={styles.mobileSearchIcon}/></button>
+                        <button className={styles.profileBtn} onClick={() => handleProfileClick("profile")}><UserIcon className={styles.userIcon}/></button>
+                    </div>
                 </div>
-                <div className={styles.mobileHeaderRight}>
-                    <button className={styles.mobileSearchBtn}><MagnifyingGlassOutline className={styles.mobileSearchIcon} /></button>
-                    <button className={styles.profileBtn}><UserIcon className={styles.userIcon} /></button>
+                <div className={styles.mobileHeaderBottom}>
+                    <h1>{routeTitle}</h1>
                 </div>
             </div>
-            <div className={styles.mobilePageHeader}>
-                <h1>{routeTitle}</h1>
-            </div>
-            <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle} />
+            <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle}/>
             <div className={styles.topBar}>
-                <div className={styles.searchContainer}>
-                    <MagnifyingGlassOutline className={styles.searchIcon}/>
-                    <input className={styles.searchInput} type={"text"} placeholder={"Search my vault"}/>
-                </div>
+                <SearchBar accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSearchAccounts={setSearchAccounts} setSelected={setSelected} />
             </div>
-            <Route accounts={accounts} favorites={favorites} handleOpenAccount={handleOpenAccount} toggleFavorited={toggleFavorited} isSelected={isSelected} selected={selected} />
+            <Route accounts={accounts} favorites={favorites} handleOpenAccount={handleOpenAccount}
+                   toggleFavorited={toggleFavorited} isSelected={isSelected} selected={selected} searchAccounts={searchAccounts} />
             <div className={styles.cardArea}>
                 <Card open={open} setOpen={setOpen} account={accounts[selectedAccount-1]} setIsSelected={setIsSelected} copiedAnimation={copiedAnimation} setCopiedAnimation={setCopiedAnimation} />
             </div>
