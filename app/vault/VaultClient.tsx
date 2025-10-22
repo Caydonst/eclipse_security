@@ -61,6 +61,10 @@ export default function VaultClient({ accounts }: { accounts: any }) {
         setRouteTitle("Profile");
     }
 
+    useEffect(() => {
+        console.log(selected);
+    }, [selected]);
+
     return (
         <div className={styles.vaultPage}>
             <div className={styles.mobileHeader}>

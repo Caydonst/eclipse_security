@@ -10,15 +10,18 @@ export default function SearchBar({accounts, searchQuery, setSearchQuery, setSea
     }
 
     useEffect(() => {
-
-        setSelected("search");
-        setSearchAccounts([]);
-        accounts.forEach((account: { name: string }) => {
-            if (account.name.toLowerCase().startsWith(searchQuery.toLowerCase())) {
-                console.log("Account found")
-                setSearchAccounts(prev => [...prev, account])
-            }
-        })
+        if (searchQuery === "") {
+            setSearchAccounts(accounts);
+        } else {
+            setSelected("search");
+            setSearchAccounts([]);
+            accounts.forEach((account: { name: string }) => {
+                if (account.name.toLowerCase().startsWith(searchQuery.toLowerCase())) {
+                    console.log("Account found")
+                    setSearchAccounts(prev => [...prev, account])
+                }
+            })
+        }
     }, [searchQuery]);
 
     return (
