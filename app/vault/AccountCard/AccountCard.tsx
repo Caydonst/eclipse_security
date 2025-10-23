@@ -6,7 +6,10 @@ import React from "react";
 export default function AccountCard({ index, handleOpenAccount, account, isFavorited, toggleFavorited, isSelected }: { index: number, handleOpenAccount: any, account: any, isFavorited: boolean, toggleFavorited: any, isSelected: number }) {
 
     return (
-        <div className={`${styles.cell} ${isSelected === index ? styles.cardAccountSelected : ""}`} onClick={() => handleOpenAccount(account.id, index)}>
+        <div className={`${styles.cell} ${isSelected === index ? styles.cardAccountSelected : ""}`} onClick={(e) => {
+            e.stopPropagation()
+            handleOpenAccount(account.id, index)
+        }}>
             <div className={styles.logoContainer}>
                 <img className={styles.googleImg}
                      src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"

@@ -23,6 +23,7 @@ export default function VaultClient({ accounts }: { accounts: any }) {
     const [selected, setSelected] = useState<string>("all");
     const [routeTitle, setRouteTitle] = useState<string>("");
     const [copiedAnimation, setCopiedAnimation] = useState<boolean>(false);
+    const [searchSelected, setSearchSelected] = useState<boolean>(false);
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [searchAccounts, setSearchAccounts] = useState([]);
 
@@ -85,10 +86,13 @@ export default function VaultClient({ accounts }: { accounts: any }) {
             </div>
             <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle}/>
             <div className={styles.topBar}>
-                <SearchBar accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSearchAccounts={setSearchAccounts} setSelected={setSelected} />
+                <SearchBar accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery} setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}
+                           searchSelected={searchSelected} searchAccounts={searchAccounts} handleOpenAccount={handleOpenAccount} isSelected={isSelected} favorites={favorites}
+                           toggleFavorited={toggleFavorited}
+                />
             </div>
             <Route accounts={accounts} favorites={favorites} handleOpenAccount={handleOpenAccount}
-                   toggleFavorited={toggleFavorited} isSelected={isSelected} selected={selected} searchAccounts={searchAccounts} />
+                   toggleFavorited={toggleFavorited} isSelected={isSelected} selected={selected} />
             <div className={styles.cardArea}>
                 <Card open={open} setOpen={setOpen} account={accounts[selectedAccount-1]} setIsSelected={setIsSelected} copiedAnimation={copiedAnimation} setCopiedAnimation={setCopiedAnimation} />
             </div>

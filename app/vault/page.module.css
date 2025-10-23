@@ -122,15 +122,34 @@
 .logoContainer {
     color: #fff;
 }
+.topBar:focus-within .searchContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: unset;
+    padding: 20px;
+;
+}
 .searchContainer {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    flex-direction: column;
     position: relative;
+    background: #000;
 }
-.expand {
-    height: 600px;
+.searchContainerInner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+    background: #000;
 }
 .searchIcon {
     position: absolute;
@@ -157,8 +176,75 @@
     background: transparent;
 }
 .searchInput:focus {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
     background: transparent;
+    outline: 6px solid rgba(255, 255, 255, 0.2);
+}
+.searchItemsContainer {
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    scrollbar-width: none;  /* hides scrollbar in Firefox */
+    -ms-overflow-style: none; /* hides scrollbar in IE and Edge */
+}
+.topBar:focus-within .searchItemsContainer {
+    display: flex;
+}
+.searchItemsContainer::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+
+.searchItemsContainer .cell {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 20px;
+    aspect-ratio: unset;
+    gap: 20px;
+}
+.searchItemsContainer .logoContainer {
+    flex-shrink: 0;
+}
+.searchItemsContainer .accountCardInfo {
+    width: 50px;
+    flex: 1;
+    padding: 0;
+}
+.searchItemsContainer .cellHeader {
+    position: unset;
+    width: unset;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+}
+.searchItemsContainer .cell:hover .headerDeleteBtn {
+    display: none;
+}
+.searchItemsContainer .accountCardInfo {
+    align-items: start;
+}
+.searchItemsContainer .accountCardInfo h3,
+.searchItemsContainer .accountCardInfo p {
+    max-width: 100%;
+}
+
+
+
+
+
+.topBar:focus-within .searchItemsContainer {
+    margin-top: 20px;
 }
 .contentContainer {
     position: absolute;
@@ -168,8 +254,9 @@
     min-height: calc(100svh - 80px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 250px));
+    grid-template-rows: repeat(auto-fit, minmax(180px, 250px));
     justify-content: center;
-    grid-auto-rows: 1fr;
+    /*grid-auto-rows: 1fr;*/
     padding: 30px 50px;
     gap: 10px;
     animation: fadeIn 0.5s;
@@ -300,6 +387,9 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.cell:hover .headerDeleteBtn {
+    display: flex;
+}
 .cardArea {
     position: fixed;
     top: 0;
@@ -411,9 +501,6 @@
     .accountCardInfo p {
         max-width: 100%;
     }
-}
-.cell:hover .headerDeleteBtn {
-    display: flex;
 }
 @media (max-width: 1050px) {
     .vaultPage {

@@ -3,7 +3,7 @@ import AccountCard from "@/app/vault/AccountCard/AccountCard";
 import React from "react";
 import ProfilePage from "../profilePage/profilePage";
 
-export default function Route({ accounts, favorites, handleOpenAccount, toggleFavorited, isSelected, selected, searchAccounts }: {accounts: any, favorites: number[], handleOpenAccount: any, toggleFavorited: any, isSelected: number, selected: string, searchAccounts: any[]}) {
+export default function Route({ accounts, favorites, handleOpenAccount, toggleFavorited, isSelected, selected }: {accounts: any, favorites: number[], handleOpenAccount: any, toggleFavorited: any, isSelected: number, selected: string}) {
     return (
         <div className={styles.main}>
             {selected === "all"
@@ -72,19 +72,6 @@ export default function Route({ accounts, favorites, handleOpenAccount, toggleFa
                 &&
                 <div className={styles.contentContainer}>
                     <ProfilePage />
-                </div>
-            }
-            {selected === "search"
-                &&
-                <div className={styles.contentContainer}>
-                    {searchAccounts.map((account: any, i: number) => {
-                        const isFavorited = favorites.includes(account.id);
-                        return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account}
-                                         isFavorited={isFavorited} toggleFavorited={toggleFavorited}
-                                         isSelected={isSelected}/>
-                        )
-                    })}
                 </div>
             }
         </div>
