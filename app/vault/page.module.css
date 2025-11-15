@@ -324,11 +324,11 @@
     left: var(--content-left);
     min-height: calc(100svh - 140px);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 250px));
-    grid-template-rows: repeat(auto-fit, minmax(180px, 250px));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 210px));
+    grid-template-rows: repeat(auto-fit, minmax(150px, 210px));
     justify-content: center;
     /*grid-auto-rows: 1fr;*/
-    padding: 30px 50px;
+    padding: 30px;
     gap: 10px;
     animation: fadeIn 0.5s;
 }
