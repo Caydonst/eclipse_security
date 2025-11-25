@@ -5,6 +5,33 @@
     --content-left: 250px;
     --content-left-small: 80px;
 }
+.vaultOverlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 3;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+.vaultActive {
+    visibility: hidden;
+    opacity: 0;
+}
+@keyframes show {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
 .sideBar {
     position: fixed;
     left: 0;
@@ -48,6 +75,38 @@
     cursor: pointer;
     gap: 10px;
     font-size: 16px;
+    transition: 0.2s;
+}
+.addNewBtn {
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 16px;
+    transition: 0.2s;
+    background: #fff;
+    color: #000;
+}
+.addNewBtn .sideBarIcon {
+    color: #000;
+}
+.addNewBtn:hover {
+    opacity: 0.7;
+    background: #fff;
+}
+.sideBar hr {
+    border: none;
+    width: 80%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+    align-self: center
 }
 .sideBarIcon {
     color: #fff;
@@ -110,19 +169,27 @@
     left: var(--content-left);
     right: var(--content-right);
     display: flex;
-    align-items: end;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
     padding: 0 50px;
-    height: 80px;
-    gap: 50px;
-    box-shadow: 0 16px 14px 0 #000;
+    height: 140px;
+    gap: 20px;
+    /*box-shadow: 0 16px 14px 0 #000;*/
     z-index: 1;
-    background: #000;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.logoContainer {
+.desktopHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     color: #fff;
+    font-size: 12px;
 }
-.topBar:focus-within .searchContainer {
+.searchContainer.active {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -131,8 +198,10 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     width: unset;
-    padding: 20px;
-;
+    padding: 20px 0;
+    box-shadow: 0 30px 20px -20px #000;
+    background: #000;
+
 }
 .searchContainer {
     width: 100%;
@@ -141,7 +210,6 @@
     align-items: center;
     flex-direction: column;
     position: relative;
-    background: #000;
 }
 .searchContainerInner {
     width: 100%;
@@ -149,11 +217,11 @@
     justify-content: center;
     align-items: start;
     position: relative;
-    background: #000;
+    padding: 0 20px;
 }
 .searchIcon {
     position: absolute;
-    left: 14px;
+    left: 34px;
     top: 50%;
     transform: translateY(-50%);
     color: rgba(255, 255, 255, 0.4);
@@ -182,7 +250,7 @@
 }
 .searchItemsContainer {
     width: 100%;
-    height: 100%;
+    height: 408px;
     display: none;
     justify-content: start;
     align-items: center;
@@ -191,8 +259,10 @@
     overflow: auto;
     scrollbar-width: none;  /* hides scrollbar in Firefox */
     -ms-overflow-style: none; /* hides scrollbar in IE and Edge */
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
-.topBar:focus-within .searchItemsContainer {
+.searchContainer.active .searchItemsContainer {
     display: flex;
 }
 .searchItemsContainer::-webkit-scrollbar {
@@ -208,6 +278,7 @@
     max-width: 100%;
     padding: 20px;
     aspect-ratio: unset;
+    flex-shrink: 0;
     gap: 20px;
 }
 .searchItemsContainer .logoContainer {
@@ -243,15 +314,15 @@
 
 
 
-.topBar:focus-within .searchItemsContainer {
+.searchContainer.active .searchItemsContainer {
     margin-top: 20px;
 }
 .contentContainer {
     position: absolute;
-    top: 80px;
+    top: 140px;
     right: var(--content-right);
     left: var(--content-left);
-    min-height: calc(100svh - 80px);
+    min-height: calc(100svh - 140px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 250px));
     grid-template-rows: repeat(auto-fit, minmax(180px, 250px));
@@ -282,6 +353,20 @@
     flex-direction: column;
     gap: 10px;
     position: relative;
+    overflow: hidden;
+    background: #000;
+}
+.cellOverlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+.active {
+    display: block;
 }
 .cardAccountSelected {
     outline: rgba(255, 255, 255, 0.2) solid 5px;
@@ -321,6 +406,21 @@
     align-items: center;
     border-radius: 6px;
 }
+.lockLogo {
+    color: #d64a40;
+    width: 30px;
+    height: 30px;
+}
+.cardLogo {
+    color: #b640d6;
+    width: 30px;
+    height: 30px;
+}
+.bankLogo {
+    color: #6366F1;
+    width: 30px;
+    height: 30px;
+}
 .headerDeleteBtn {
     background: transparent;
     border: none;
@@ -331,6 +431,15 @@
     width: 34px;
     height: 34px;
     cursor: pointer;
+    transition: 0.2s;
+}
+.headerDeleteBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.headerDeleteIcon {
+    color: #fff;
+    width: 26px;
+    transition: 0.3s;
 }
 .favBtn {
     background: transparent;
@@ -342,10 +451,12 @@
     width: 34px;
     height: 34px;
     cursor: pointer;
+    transition: 0.2s;
 }
 .starIcon {
     fill: #fff ;
     width: 20px;
+    transition: 0.2s;
 }
 .starIconSelected {
     fill: yellow;
@@ -356,13 +467,6 @@
 }
 .favBtn:hover .starIcon {
     fill: yellow;
-}
-.headerDeleteBtn:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-.headerDeleteIcon {
-    color: #fff;
-    width: 26px;
 }
 .accountCardInfo {
     display: flex;
@@ -413,7 +517,7 @@
     color: #fff;
     border-radius: 50px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 .profileCardInner {
     position: absolute;
@@ -510,6 +614,10 @@
         z-index: 20;
         border: none;
     }
+    .vaultActive {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 @media (max-width: 500px) {
     .vaultPage {
@@ -560,9 +668,12 @@
     }
     .topBar {
         top: 50px;
-        left: var(--content-left);
+        left: 0;
         padding: 0 10px;
         display: none;
+    }
+    .cell {
+        flex-shrink: 0;
     }
     .mobileHeader {
         position: fixed;

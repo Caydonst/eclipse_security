@@ -8,6 +8,7 @@ import {
     CreditCardIcon as CreditCardOutline,
     BuildingLibraryIcon as BuildingLibraryOutline,
     StarIcon as StarOutline,
+    PlusIcon as PlusOutline,
 } from "@heroicons/react/24/outline";
 import {
     ListBulletIcon as ListBulletSolid,
@@ -18,7 +19,7 @@ import {
 } from "@heroicons/react/24/solid";
 import ProfileCard from "../profileCard";
 
-export default function Sidebar({selected, setSelected, setRouteTitle}: {selected: string, setSelected: any, setRouteTitle: any}) {
+export default function Sidebar({selected, setSelected, setRouteTitle, handleOpenAccount}: {selected: string, setSelected: any, setRouteTitle: any, handleOpenAccount: any}) {
 
     const buttons = [
         { id: "all", label: "All Items", outline: <ListBulletOutline />, solid: <ListBulletSolid /> },
@@ -26,6 +27,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle}: {selecte
         { id: "cards", label: "Payment Cards", outline: <CreditCardOutline />, solid: <CreditCardSolid /> },
         { id: "bank", label: "Bank Accounts", outline: <BuildingLibraryOutline />, solid: <BuildingLibrarySolid /> },
         { id: "favorites", label: "Favorites", outline: <StarOutline />, solid: <StarSolid /> },
+
     ];
 
     const handleBtnClick = (id: string) => {
@@ -47,7 +49,8 @@ export default function Sidebar({selected, setSelected, setRouteTitle}: {selecte
                     <Image src={eclipse} alt={""} className={styles.logo}/>
                     <h1>Eclipse</h1>
                 </div>
-
+                <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} />Add New</button>
+                <hr />
                 {buttons.map((btn) => (
                     <button
                         key={btn.id}

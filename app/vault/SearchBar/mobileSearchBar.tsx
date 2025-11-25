@@ -1,7 +1,7 @@
-import styles from "@/app/vault/page.module.css";
-import {MagnifyingGlassIcon as MagnifyingGlassOutline} from "@heroicons/react/24/outline";
-import React, {useEffect, useRef, useState} from "react";
-import AccountCard from "../AccountCard/AccountCard"
+import styles from "./page.module.css";
+import React, {useEffect} from "react";
+import {XMarkIcon} from "@heroicons/react/24/outline"
+import AccountCard from "@/app/vault/AccountCard/AccountCard";
 
 type Account = {
     id: number;
@@ -12,6 +12,9 @@ type Account = {
 }
 
 type props = {
+    mobileSearchActive: boolean
+    setMobileSearchActive: React.Dispatch<React.SetStateAction<boolean>>
+    inputRef: React.RefObject<HTMLInputElement | null>;
     accounts: Account[]
     searchQuery: string
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>
@@ -25,22 +28,15 @@ type props = {
     searchAccounts: Account[]
 }
 
-export default function SearchBar({accounts, searchQuery, setSearchQuery, setSearchAccounts, setSearchSelected, searchSelected, searchAccounts, handleOpenAccount, selectedCell, favorites, toggleFavorited}: props) {
-    const searchRef = useRef<HTMLDivElement | null>(null);
-
-    useEffect(() => {
-        function handleClickOutside(e) {
-            if (searchRef.current && !searchRef.current.contains(e.target)) {
-                setSearchSelected(false);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
-
+export default function MobileSearchBar({ mobileSearchActive, setMobileSearchActive, inputRef, accounts, searchQuery, setSearchQuery, setSearchAccounts, setSearchSelected, searchSelected, searchAccounts, handleOpenAccount, selectedCell, favorites, toggleFavorited }: props) {
     const changeSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
         console.log(searchQuery);
+    }
+
+    const handleCloseClick = () => {
+        setMobileSearchActive(false);
+        setSearchQuery("");
     }
 
     useEffect(() => {
@@ -50,16 +46,16 @@ export default function SearchBar({accounts, searchQuery, setSearchQuery, setSea
                 setSearchAccounts(prev => [...prev, account])
             }
         })
-    }, [searchQuery, searchSelected]);
+    }, [searchQuery]);
 
     return (
-        <div ref={searchRef} className={searchSelected ? `${styles.searchContainer} ${styles.active}` : `${styles.searchContainer}`}>
-            <div className={styles.searchContainerInner}>
-                <MagnifyingGlassOutline className={styles.searchIcon}/>
-                <input className={styles.searchInput} type={"text"} placeholder={"Search my vault"} value={searchQuery}
-                       onChange={(e) => changeSearchQuery(e)} onClick={() => setSearchSelected(true)}/>
+        <div className={mobileSearchActive ? `${styles.mobileSearchContainer} ${styles.active}` : styles.mobileSearchContainer}>
+            <button className={styles.closeBtn} onClick={() => handleCloseClick()}><XMarkIcon className={styles.closeIcon} /></button>
+            <div className={styles.mobileSearchContainerInner}>
+                <input ref={inputRef} type={"text"} placeholder={"Search my vault"} value={searchQuery}
+                       onChange={(e) => changeSearchQuery(e)} />
             </div>
-            {searchSelected
+            {mobileSearchActive
                 &&
                 <div className={styles.searchItemsContainer}>
                     {searchAccounts.map((account: Account, i: number) => {

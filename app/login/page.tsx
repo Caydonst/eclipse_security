@@ -8,7 +8,7 @@ import React from "react";
 import {useState} from "react";
 import Navbar from "../components/navbar/navbar"
 import Image from "next/image";
-import loginImg from "../assets/image2.png"
+import loginImg from "../assets/image3.png"
 
 export default function LoginPage() {
     const [error, setError] = useState(false);

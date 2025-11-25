@@ -1,20 +1,51 @@
 import styles from "@/app/vault/page.module.css";
 import {EllipsisHorizontalIcon, StarIcon as StarOutline, XMarkIcon} from "@heroicons/react/24/outline";
 import {StarIcon as StarSolid} from "@heroicons/react/24/solid";
-import React from "react";
+import React, {useState} from "react";
+import eclipse from "@/app/assets/eclipse.png";
+import Image from "next/image";
+import {
+    LockClosedIcon as LockClosedSolid,
+    CreditCardIcon as CreditCardSolid,
+    BuildingLibraryIcon as BuildingLibrarySolid,
+} from "@heroicons/react/24/solid";
+import EllipsisMenu from "./ellipsisMenu";
 
-export default function AccountCard({ index, handleOpenAccount, account, isFavorited, toggleFavorited, isSelected }: { index: number, handleOpenAccount: any, account: any, isFavorited: boolean, toggleFavorited: any, isSelected: number }) {
+type Account = {
+    id: number;
+    type: string;
+    name: string;
+    email: string;
+    password: string;
+}
+
+type props = {
+    index: number;
+    account: Account;
+    isFavorited: boolean,
+    handleOpenAccount: (accountIndex: number) => void
+    toggleFavorited: (id: number) => void
+    selectedCell: number | null
+}
+
+export default function AccountCard({ index, handleOpenAccount, account, isFavorited, toggleFavorited, selectedCell }: props) {
+    const [ellipsisMenuOpen, setEllipsisMenuOpen] = useState(false);
 
     return (
-        <div className={`${styles.cell} ${isSelected === index ? styles.cardAccountSelected : ""}`} onClick={(e) => {
+        <div className={`${styles.cell} ${selectedCell !== null && selectedCell-1 === index ? styles.cardAccountSelected : ""}`} onClick={(e) => {
             e.stopPropagation()
-            handleOpenAccount(account.id, index)
+            handleOpenAccount(account.id)
         }}>
             <div className={styles.logoContainer}>
-                <img className={styles.googleImg}
-                     src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                     alt="Google logo"
-                />
+                {account.type === "password" &&
+                    <LockClosedSolid className={styles.lockLogo} />
+                }
+                {account.type === "paymentCard" &&
+                    <CreditCardSolid className={styles.cardLogo} />
+                }
+                {account.type === "bankAccount" &&
+                    <BuildingLibrarySolid className={styles.bankLogo} />
+                }
             </div>
             <div className={styles.accountCardInfo}>
                 <h3>{account.name}</h3>
@@ -32,7 +63,10 @@ export default function AccountCard({ index, handleOpenAccount, account, isFavor
                     )}
 
                 </button>
-                <button className={styles.headerDeleteBtn}><XMarkIcon className={styles.headerDeleteIcon}/></button>
+                <button className={styles.headerDeleteBtn}><XMarkIcon className={styles.headerDeleteIcon} onClick={(e) => {
+                    e.stopPropagation()
+                    }}/>
+                </button>
             </div>
         </div>
     )

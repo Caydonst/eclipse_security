@@ -8,7 +8,7 @@ import React from "react";
 import {useState} from "react";
 import Navbar from "../components/navbar/navbar"
 import Image from "next/image";
-import loginImg from "@/app/assets/image2.png";
+import loginImg from "@/app/assets/image3.png";
 
 export default function SignupPage() {
     const [loading, setLoading] = useState(false);

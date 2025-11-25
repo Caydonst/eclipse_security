@@ -41,6 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.2s;
 }
 .closeBtn:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -59,6 +60,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.lockLogo {
+    color: #F97316;
+    width: 30px;
+    height: 30px;
+}
+.cardLogo {
+    color: #EC4899;
+    width: 30px;
+    height: 30px;
+}
+.bankLogo {
+    color: #6366F1;
+    width: 30px;
+    height: 30px;
 }
 .cardIconContainer img {
     width: 30px;
