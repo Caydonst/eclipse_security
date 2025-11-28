@@ -32,9 +32,9 @@ export default function AccountCard({ index, handleOpenAccount, account, isFavor
     const [ellipsisMenuOpen, setEllipsisMenuOpen] = useState(false);
 
     return (
-        <div className={`${styles.cell} ${selectedCell !== null && selectedCell-1 === index ? styles.cardAccountSelected : ""}`} onClick={(e) => {
+        <div className={`${styles.cell} ${selectedCell !== null && selectedCell === index ? styles.cardAccountSelected : ""}`} onClick={(e) => {
             e.stopPropagation()
-            handleOpenAccount(account.id)
+            handleOpenAccount(account.id, index)
         }}>
             <div className={styles.logoContainer}>
                 {account.type === "password" &&

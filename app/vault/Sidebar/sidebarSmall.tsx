@@ -7,7 +7,7 @@ import {
     LockClosedIcon as LockClosedOutline,
     CreditCardIcon as CreditCardOutline,
     BuildingLibraryIcon as BuildingLibraryOutline,
-    StarIcon as StarOutline,
+    StarIcon as StarOutline, PlusIcon as PlusOutline,
 } from "@heroicons/react/24/outline";
 import {
     ListBulletIcon as ListBulletSolid,
@@ -41,7 +41,6 @@ export default function SidebarSmall({selected, setSelected, setRouteTitle}: {se
             <div className={styles.sideBarLogoContainer}>
                 <Image src={eclipse} alt={""} className={styles.logo}/>
             </div>
-
             {buttons.map((btn) => (
                 <button
                     key={btn.id}

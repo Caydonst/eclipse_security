@@ -106,7 +106,7 @@
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     margin: 10px 0;
-    align-self: center
+    align-self: center;
 }
 .sideBarIcon {
     color: #fff;
@@ -175,10 +175,11 @@
     padding: 0 50px;
     height: 140px;
     gap: 20px;
+    backdrop-filter: blur(20px);
     /*box-shadow: 0 16px 14px 0 #000;*/
     z-index: 1;
     background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(20px);
+
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .desktopHeader {
@@ -358,7 +359,7 @@
 }
 .cellOverlay {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

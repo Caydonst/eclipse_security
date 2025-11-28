@@ -46,8 +46,8 @@ export default function VaultClient({accounts}: { accounts: Account[] }) {
             : [...prev, id]);
     }
 
-    const handleOpenAccount = (accountIndex: number) => {
-        setSelectedCell(accountIndex);
+    const handleOpenAccount = (accountIndex: number, cellIndex: number) => {
+        setSelectedCell(cellIndex);
         if (isAnimating) return;
 
         if (!open) {
