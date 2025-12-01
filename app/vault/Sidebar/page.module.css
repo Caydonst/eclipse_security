@@ -1,0 +1,327 @@
+.sideBar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--content-left);
+    background: #080808;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    padding: 0 16px;
+    z-index: 2;
+    gap: 40px;
+}
+.sideBarHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 30px;
+    margin-top: 40px;
+    width: 100%;
+}
+.sideBar h1 {
+    color: #fff;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sideBar .addNewBtn {
+    width: 100%;
+    height: 58px;
+    border-radius: 18px;
+    border: none;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+    background: #fff;
+    color: #000;
+    position: relative;
+}
+.sidebarButtons .addNewBtn .sideBarIcon {
+    color: #000;
+}
+.sidebarButtons .addNewBtn:hover {
+    background: rgba(255, 255, 255, 0.7)
+}
+.sideBarIcon {
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+.sideBarButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.sidebarSmall {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: #080808;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: none;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    width: 80px;
+    z-index: 2;
+    gap: 40px;
+    padding: 0 16px;
+}
+.sidebarSmall h1 {
+    color: #fff;
+    padding: 30px 20px;
+}
+.sidebarSmall .addNewBtn {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 16px;
+    transition: 0.2s;
+    background: #fff;
+    color: #000;
+    position: relative;
+}
+.sidebarSmallButton {
+    background: transparent;
+    border: none;
+    border-radius: 16px;
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.sidebarSmallButton.selected {
+    background: rgba(255, 255, 255, 0.15);
+}
+.sidebarSmallButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.sideBarLogoContainer {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    width: 30px;
+    height: auto;
+    filter: invert(100%);
+    background: #F7F7F7;
+}
+.routeBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+.sidebarButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+.sideBarButton {
+    width: 100%;
+    height: 58px;
+    border-radius: 18px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.sideBarButton.selected {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    position: relative;
+}
+.sideBarButton.selected::after {
+    content: "";
+    position: absolute;
+    left: -19px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+.sideBarButton.selected::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
+}
+.sidebarSmallButton.selected {
+    background: rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+.sidebarSmallButton.selected::after {
+    content: "";
+    position: absolute;
+    left: -19px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+.sidebarSmallButton.selected::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
+}
+.sidebarButtons .sideBarIcon {
+    color: #fff;
+}
+.sidebarButtons .sideBarIcon.selected {
+    color: #fff;
+}
+/* ------------- ALL ITEMS BUTTON ------------- */
+.sideBarButton.selected:nth-child(1)::after {
+    background: #fff;
+}
+.sideBarButton.selected:nth-child(1)::before {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+.sidebarButtons .sideBarButton.selected:nth-child(1) .sideBarIcon.selected {
+    color: #fff;
+}
+/* ------------- PASSWORDS BUTTON ------------- */
+.sideBarButton.selected:nth-child(2)::after,
+.sidebarSmallButton.selected:nth-child(2)::after {
+    background: #FF4654;
+}
+.sideBarButton.selected:nth-child(2)::before,
+.sidebarSmallButton.selected:nth-child(2)::before {
+    background-image: radial-gradient(circle, rgba(255, 70, 84, 1) 0%, rgba(255, 70, 84, 0) 100%);
+}
+.sidebarButtons .sideBarButton.selected:nth-child(2) .sideBarIcon.selected,
+.sidebarButtons .sidebarSmallButton.selected:nth-child(2) .sideBarIcon.selected {
+    color: #FF4654;
+}
+/* ------------- PAYMENT CARDS BUTTON ------------- */
+.sideBarButton.selected:nth-child(3)::after,
+.sidebarSmallButton.selected:nth-child(3)::after {
+    background: #FF3AAD;
+}
+.sideBarButton.selected:nth-child(3)::before,
+.sidebarSmallButton.selected:nth-child(3)::before {
+    background-image: radial-gradient(circle, rgba(255, 58, 173, 1) 0%, rgba(255, 58, 173, 0) 100%);
+}
+.sidebarButtons .sideBarButton.selected:nth-child(3) .sideBarIcon.selected,
+.sidebarButtons .sidebarSmallButton.selected:nth-child(3) .sideBarIcon.selected {
+    color: #FF3AAD;
+}
+/* ------------- BANK ACCOUNTS BUTTON ------------- */
+.sideBarButton.selected:nth-child(4)::after,
+.sidebarSmallButton.selected:nth-child(4)::after {
+    background: #3FC5FF;
+}
+.sideBarButton.selected:nth-child(4)::before,
+.sidebarSmallButton.selected:nth-child(4)::before {
+    background-image: radial-gradient(circle, rgba(63, 197, 255, 1) 0%, rgba(63, 197, 255, 0) 100%);
+}
+.sidebarButtons .sideBarButton.selected:nth-child(4) .sideBarIcon.selected,
+.sidebarButtons .sidebarSmallButton.selected:nth-child(4) .sideBarIcon.selected {
+    color: #3FC5FF;
+}
+/* ------------- FAVORITES BUTTON ------------- */
+.sideBarButton.selected:nth-child(5)::after,
+.sidebarSmallButton.selected:nth-child(5)::after {
+    background: #FFC526;
+}
+.sideBarButton.selected:nth-child(5)::before,
+.sidebarSmallButton.selected:nth-child(5)::before {
+    background-image: radial-gradient(circle, rgba(255, 197, 38, 1) 0%, rgba(255, 197, 38, 0) 100%);
+}
+.sidebarButtons .sideBarButton.selected:nth-child(5) .sideBarIcon.selected,
+.sidebarButtons .sidebarSmallButton.selected:nth-child(5) .sideBarIcon.selected {
+    color: #FFC526;
+}
+@media (max-width: 1500px) {
+    .sidebarSmall {
+        display: flex;
+    }
+    .sideBar {
+        display: none;
+    }
+}
+@media (max-width: 500px) {
+    .sidebarSmall {
+        top: unset;
+        width: 100%;
+        height: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        padding: 0 10px;
+        z-index: 2;
+    }
+    .sideBarIcon {
+        color: rgba(255, 255, 255, 0.4);
+    }
+    .sidebarSmallButton {
+        height: 44px;
+        width: 44px;
+    }
+    .sideBarLogoContainer {
+        display: none;
+    }
+}

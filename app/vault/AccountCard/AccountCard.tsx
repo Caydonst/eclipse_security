@@ -22,20 +22,30 @@ type Account = {
 type props = {
     index: number;
     account: Account;
-    isFavorited: boolean,
-    handleOpenAccount: (accountIndex: number) => void
-    toggleFavorited: (id: number) => void
-    selectedCell: number | null
+    isFavorited: boolean;
+    handleOpenAccount: (accountIndex: number) => void;
+    toggleFavorited: (id: number) => void;
+    selectedCell: number | null;
+    isAnimating: boolean;
 }
 
-export default function AccountCard({ index, handleOpenAccount, account, isFavorited, toggleFavorited, selectedCell }: props) {
+export default function AccountCard({ index, handleOpenAccount, account, isFavorited, toggleFavorited, selectedCell, isAnimating }: props) {
     const [ellipsisMenuOpen, setEllipsisMenuOpen] = useState(false);
 
     return (
-        <div className={`${styles.cell} ${selectedCell !== null && selectedCell === index ? styles.cardAccountSelected : ""}`} onClick={(e) => {
-            e.stopPropagation()
-            handleOpenAccount(account.id, index)
-        }}>
+        <div
+            className={`
+                ${styles.cell}
+                ${selectedCell !== null && selectedCell === index ? styles.cardAccountSelected : ""}
+                ${isAnimating ? styles.disabledCell : ""}
+            `}
+            onClick={(e) => {
+                e.stopPropagation();
+                if (!isAnimating) {
+                    handleOpenAccount(account.id, index);
+                }
+            }}
+        >
             <div className={styles.logoContainer}>
                 {account.type === "password" &&
                     <LockClosedSolid className={styles.lockLogo} />
@@ -65,9 +75,10 @@ export default function AccountCard({ index, handleOpenAccount, account, isFavor
                 </button>
                 <button className={styles.headerDeleteBtn}><XMarkIcon className={styles.headerDeleteIcon} onClick={(e) => {
                     e.stopPropagation()
-                    }}/>
+                }}/>
                 </button>
             </div>
+            <div className={`${styles.cellOverlay} ${isAnimating ? styles.active : ""}`}></div>
         </div>
     )
 }

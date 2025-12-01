@@ -2,20 +2,24 @@
     position: fixed;
     bottom: 0;
     width: 500px;
-    background: #000;
+    background: #080808;
     top: 20px;
     right: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px 10px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px 18px 0 0;
     transition: 0.3s;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 1);
     padding: 20px;
     display: flex;
     justify-content: start;
     align-items: start;
     flex-direction: column;
     gap: 30px;
-    overflow: hidden;
+    overflow: auto;
+    scrollbar-width: none;
+}
+.cardContainer::-webkit-scrollbar {
+    display: none;
 }
 .open {
     transform: translateY(100%);
@@ -30,10 +34,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 .closeBtn {
-    width: 40px;
-    height: 40px;
+    aspect-ratio: 1;
+    height: 100%;
     background: transparent;
     border: none;
     border-radius: 50%;
@@ -55,24 +60,24 @@
 .cardIconContainer {
     height: 50px;
     width: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .lockLogo {
-    color: #F97316;
+    color: #FF4654;
     width: 30px;
     height: 30px;
 }
 .cardLogo {
-    color: #EC4899;
+    color: #FF3AAD;
     width: 30px;
     height: 30px;
 }
 .bankLogo {
-    color: #6366F1;
+    color: #3FC5FF;
     width: 30px;
     height: 30px;
 }
@@ -87,10 +92,20 @@
     flex-direction: column;
     color: #fff;
     width: 100%;
-    gap: 20px;
+    gap: 30px;
 }
 .inputsContainer {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.openContainer,
+.hiddenContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 .inputsContainer label {
     color: rgba(255, 255, 255, 0.3);
@@ -99,12 +114,13 @@
 .infoContainer input {
     width: 100%;
     height: 40px;
-    background: #000;
     color: #fff;
+    background: transparent;
     outline: 0;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0 14px;
+    border-radius: 10px;
 }
 .cardPasswordContainer {
     width: 100%;
@@ -141,8 +157,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #0B0B0B;
     border-radius: 50px;
     height: 40px;
     transform: translateY(-200%);
@@ -152,6 +168,136 @@
 }
 .passwordCopiedMessage p {
     color: mediumspringgreen;
+}
+.selectorContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 10px;
+    gap: 10px;
+}
+.selectorBtnPassword,
+.selectorBtnCard,
+.selectorBtnBank {
+    width: 100%;
+    background: transparent;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+.selectorBtnPassword .lockLogo,
+.selectorBtnCard .cardLogo,
+.selectorBtnBank .bankLogo {
+    color: #fff;
+    width: 20px;
+    height: 20px;
+}
+.selectorBtnPassword:hover,
+.selectorBtnCard:hover,
+.selectorBtnBank:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.selectorBtnPassword.selected {
+    background: rgba(255, 255, 255, 0.1);
+}
+.selectorBtnPassword.selected .lockLogo {
+    color: #FF4654;
+}
+.selectorBtnPassword.selected::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background: #FF4654;
+}
+
+.selectorBtnCard.selected {
+    background: rgba(255, 255, 255, 0.1);
+}
+.selectorBtnCard.selected .cardLogo {
+    color: #FF3AAD;
+}
+.selectorBtnCard.selected::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background: #FF3AAD;
+}
+
+.selectorBtnBank.selected {
+    background: rgba(255, 255, 255, 0.1);
+}
+.selectorBtnBank.selected .bankLogo {
+    color: #3FC5FF;
+}
+.selectorBtnBank.selected::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background: #3FC5FF;
+}
+.createInputsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 18px;
+}
+.createInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.createInput input {
+    width: 100%;
+    height: 50px;
+    border-radius: 14px;
+}
+.createInput input:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.createInput input:focus {
+    border-color: #fff;
+}
+.createBtn {
+    width: 100%;
+    height: 50px;
+    color: #000;
+    background: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+.createBtn:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+.footerColor {
+    width: 100%;
+    height: 3px;
 }
 @keyframes moveDown {
     0% {
@@ -174,7 +320,7 @@
         top: 5%;
         border: unset;
         border-top: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 10px 10px 0 0;
+        border-radius: 18px 18px 0 0;
         box-shadow: none;
     }
 }

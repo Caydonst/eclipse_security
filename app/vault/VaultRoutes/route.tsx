@@ -34,7 +34,7 @@ export default function Route({ accounts, favorites, handleOpenAccount, toggleFa
                     {accounts.map((account: Account, i: number) => {
                         const isFavorited = favorites.includes(account.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
@@ -45,7 +45,7 @@ export default function Route({ accounts, favorites, handleOpenAccount, toggleFa
                     {passwords.map((account: Account, i: number) => {
                         const isFavorited = favorites.includes(account.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
@@ -56,7 +56,7 @@ export default function Route({ accounts, favorites, handleOpenAccount, toggleFa
                     {paymentCards.map((account: Account, i: number) => {
                         const isFavorited = favorites.includes(account.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
@@ -67,7 +67,7 @@ export default function Route({ accounts, favorites, handleOpenAccount, toggleFa
                     {bankAccounts.map((account: Account, i: number) => {
                         const isFavorited = favorites.includes(account.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
@@ -86,17 +86,11 @@ export default function Route({ accounts, favorites, handleOpenAccount, toggleFa
                                 isFavorited={true}
                                 toggleFavorited={toggleFavorited}
                                 selectedCell={selectedCell}
+                                isAnimating={isAnimating}
                             />
                         ))}
                 </div>
             }
-            {selected === "profile"
-                &&
-                <div className={styles.contentContainer}>
-                    <ProfilePage />
-                </div>
-            }
-            <div className={isAnimating ? `${styles.cellOverlay} ${styles.active}` : ""}></div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import eclipse from "../../assets/eclipse.png";
-import styles from "../page.module.css";
+import styles from "./page.module.css";
 import {
     ListBulletIcon as ListBulletOutline,
     LockClosedIcon as LockClosedOutline,
@@ -47,41 +47,48 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
             <div className={styles.sideBar}>
                 <div className={styles.sideBarHeader}>
                     <Image src={eclipse} alt={""} className={styles.logo}/>
-                    <h1>Eclipse</h1>
+                    <h1>Eclurity</h1>
                 </div>
-                <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} />Add New</button>
-                <hr />
-                {buttons.map((btn) => (
-                    <button
-                        key={btn.id}
-                        onClick={() => handleBtnClick(btn.id)}
-                        className={`${styles.sideBarButton} ${selected === btn.id ? styles.sidebarSelected : ""}`}
-                    >
-                  <span className={styles.sideBarIcon}>
+                <div className={styles.sidebarButtons}>
+                    <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} />Add New</button>
+                    <div className={styles.routeBtnContainer}>
+                        {buttons.map((btn) => (
+                            <button
+                                key={btn.id}
+                                onClick={() => handleBtnClick(btn.id)}
+                                className={`${styles.sideBarButton} ${selected === btn.id ? styles.selected : ""}`}
+                            >
+                  <span className={`${styles.sideBarIcon} ${selected === btn.id ? styles.selected: ""}`}>
                     {selected === btn.id ? btn.solid : btn.outline}
                   </span>
-                        {btn.label}
-                    </button>
-                ))}
-                <ProfileCard handleBtnClick={handleBtnClick} />
+                                {btn.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <ProfileCard />
             </div>
-            <div className={styles.sideBarSmall}>
-                <div className={styles.sideBarLogoContainer}>
+            <div className={styles.sidebarSmall}>
+                <div className={styles.sideBarHeader}>
                     <Image src={eclipse} alt={""} className={styles.logo}/>
                 </div>
-
-                {buttons.map((btn) => (
-                    <button
-                        key={btn.id}
-                        onClick={() => handleBtnClick(btn.id)}
-                        className={`${styles.sideBarSmallButton} ${selected === btn.id ? styles.sideBarSmallSelected : ""}`}
-                    >
-                  <span className={`${styles.sideBarIcon} ${selected === btn.id ? styles.sidebarIconSelected : ""}`}>
+                <div className={styles.sidebarButtons}>
+                    <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} /></button>
+                    <div className={styles.routeBtnContainer}>
+                        {buttons.map((btn) => (
+                            <button
+                                key={btn.id}
+                                onClick={() => handleBtnClick(btn.id)}
+                                className={`${styles.sidebarSmallButton} ${selected === btn.id ? styles.selected : ""}`}
+                            >
+                  <span className={`${styles.sideBarIcon} ${selected === btn.id ? styles.selected : ""}`}>
                     {selected === btn.id ? btn.solid : btn.outline}
                   </span>
-                    </button>
-                ))}
-                <ProfileCard handleBtnClick={handleBtnClick} />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <ProfileCard />
             </div>
         </>
     );

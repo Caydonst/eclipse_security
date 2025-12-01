@@ -5,11 +5,16 @@ import React, {useState} from "react";
 
 export default function ProfileCard({handleBtnClick}: {handleBtnClick: any}) {
     return (
-        <button className={styles.profileCard} onClick={() => handleBtnClick("profile")}>
-            <div className={styles.profileCardInner}>
+        <>
+            <button className={styles.profileCard}>
+                <div className={styles.profileCardInner}>
+                    <div className={styles.profileImg}></div>
+                    <p>testemail1234567890@gmail.com</p>
+                </div>
+            </button>
+            <button className={styles.profileCardSmall}>
                 <div className={styles.profileImg}></div>
-                <p>testemail1234567890@gmail.com</p>
-            </div>
-        </button>
+            </button>
+        </>
     )
 }
