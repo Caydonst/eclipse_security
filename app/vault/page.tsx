@@ -11,6 +11,7 @@ export default async function VaultPage() {
     if (!session) {
         redirect("/login");
     }
+    const user = session?.user;
 
-    return <VaultClient accounts={accounts} />;
+    return <VaultClient accounts={accounts} user={user} />;
 }

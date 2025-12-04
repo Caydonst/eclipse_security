@@ -19,7 +19,14 @@ import {
 } from "@heroicons/react/24/solid";
 import ProfileCard from "../profileCard";
 
-export default function Sidebar({selected, setSelected, setRouteTitle, handleOpenAccount}: {selected: string, setSelected: any, setRouteTitle: any, handleOpenAccount: any}) {
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    image: string;
+}
+
+export default function Sidebar({selected, setSelected, setRouteTitle, handleOpenAccount, user}: {selected: string, setSelected: any, setRouteTitle: any, handleOpenAccount: any, user: User}) {
 
     const buttons = [
         { id: "all", label: "All Items", outline: <ListBulletOutline />, solid: <ListBulletSolid /> },
@@ -44,13 +51,14 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
 
     return (
         <>
+            {/* ----------------- DESKTOP SIDEBAR ----------------- */}
             <div className={styles.sideBar}>
                 <div className={styles.sideBarHeader}>
                     <Image src={eclipse} alt={""} className={styles.logo}/>
                     <h1>Eclurity</h1>
                 </div>
                 <div className={styles.sidebarButtons}>
-                    <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} />Add New</button>
+                    <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} />Create New</button>
                     <div className={styles.routeBtnContainer}>
                         {buttons.map((btn) => (
                             <button
@@ -66,8 +74,10 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
                         ))}
                     </div>
                 </div>
-                <ProfileCard />
+                <ProfileCard user={user} />
             </div>
+
+            {/* ----------------- MOBILE SIDEBAR ----------------- */}
             <div className={styles.sidebarSmall}>
                 <div className={styles.sideBarHeader}>
                     <Image src={eclipse} alt={""} className={styles.logo}/>
@@ -88,7 +98,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
                         ))}
                     </div>
                 </div>
-                <ProfileCard />
+                <ProfileCard user={user} />
             </div>
         </>
     );

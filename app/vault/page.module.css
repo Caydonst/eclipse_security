@@ -1,26 +1,9 @@
 .vaultPage {
     height: 100svh;
     display: flex;
-    --content-right: 540px;
+    --content-right: 600px;
     --content-left: 250px;
     --content-left-small: 80px;
-}
-.vaultOverlay {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 3;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s;
-}
-.vaultActive {
-    visibility: hidden;
-    opacity: 0;
 }
 @keyframes show {
     from {
@@ -184,11 +167,11 @@
     top: 140px;
     right: var(--content-right);
     left: var(--content-left);
-    min-height: calc(100svh - 140px);
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 210px));
-    grid-template-rows: repeat(auto-fit, minmax(150px, 210px));
-    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(210px, 1fr));
+    justify-items: center;
     padding: 30px;
     gap: 10px;
     animation: fadeIn 0.5s;
@@ -203,7 +186,6 @@
 }
 .cell {
     width: 100%;
-    max-width: 300px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 18px;
     aspect-ratio: 1;
@@ -215,7 +197,7 @@
     gap: 10px;
     position: relative;
     overflow: hidden;
-    background: #0b0b0b;
+    background: #080808;
     box-shadow: 0 0 8px #000;
 }
 .disabledCell {
@@ -369,7 +351,7 @@
     align-items: center;
     height: 58px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    background: #080808;
+    background: transparent;
     color: #fff;
     border-radius: 18px;
     cursor: pointer;
@@ -390,12 +372,17 @@
     text-overflow: ellipsis;
     width: 100%;
 }
-.profileImg {
-    width: 30px;
-    height: 30px;
+.profileImgContainer {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: gray;
     flex-shrink: 0;
+    overflow: hidden;
+}
+.profileImg {
+    width: 100%;
+    height: 100%;
 }
 .profileCard:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -408,19 +395,18 @@
     bottom: 20px;
     left: 16px;
     right: 16px;
+    height: 48px;
     display: none;
     justify-content: center;
     align-items: center;
-    height: 58px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: none;
     background: #080808;
     color: #fff;
-    border-radius: 18px;
-    padding: 10px;
+    border-radius: 50%;
     cursor: pointer;
     transition: 0.3s;
 }
-.profileCardSmall .profileImg {
+.profileCardSmall .profileImgContainer {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -487,6 +473,23 @@
 @media (max-width: 1050px) {
     .vaultPage {
         --content-right: 0;
+    }
+    .vaultOverlay {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 3;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.3s;
+    }
+    .vaultActive {
+        visibility: hidden;
+        opacity: 0;
     }
     .cardArea {
         z-index: 20;

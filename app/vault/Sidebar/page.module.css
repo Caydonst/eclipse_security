@@ -32,8 +32,8 @@
 }
 .sideBar .addNewBtn {
     width: 100%;
-    height: 58px;
-    border-radius: 18px;
+    height: 50px;
+    border-radius: 50px;
     border: none;
     display: flex;
     justify-content: start;
@@ -46,6 +46,60 @@
     background: #fff;
     color: #000;
     position: relative;
+}
+.sidebarButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.sideBarButton {
+    width: 100%;
+    height: 50px;
+    border-radius: 18px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.sideBarButton.selected {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    position: relative;
+}
+.sideBarButton.selected::after {
+    content: "";
+    position: absolute;
+    left: -19px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+.sideBarButton.selected::before {
+    content: "";
+    position: absolute;
+    left: -41px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
 }
 .sidebarButtons .addNewBtn .sideBarIcon {
     color: #000;
@@ -67,7 +121,7 @@
     left: 0;
     top: 0;
     bottom: 0;
-    background: #080808;
+    background: 080808;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     display: none;
     justify-content: start;
@@ -127,7 +181,7 @@
     width: 30px;
     height: auto;
     filter: invert(100%);
-    background: #F7F7F7;
+    background: #E7E7E7;
 }
 .routeBtnContainer {
     display: flex;
@@ -136,60 +190,6 @@
     flex-direction: column;
     width: 100%;
     gap: 5px;
-}
-.sidebarButtons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
-}
-.sideBarButton {
-    width: 100%;
-    height: 58px;
-    border-radius: 18px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 0 20px;
-    cursor: pointer;
-    gap: 10px;
-    font-size: 16px;
-    transition: 0.3s;
-}
-.sideBarButton.selected {
-    background: rgba(255, 255, 255, 0.15);
-    color: #fff;
-    position: relative;
-}
-.sideBarButton.selected::after {
-    content: "";
-    position: absolute;
-    left: -19px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 30px;
-    background: #fff;
-    border-radius: 50px;
-    transition: 0.3s;
-}
-.sideBarButton.selected::before {
-    content: "";
-    position: absolute;
-    left: -41px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    filter: blur(25px);
-    transition: 0.3s;
 }
 .sidebarSmallButton.selected {
     background: rgba(255, 255, 255, 0.15);

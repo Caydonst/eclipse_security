@@ -7,7 +7,7 @@ export default function Navbar() {
         <div className={styles.navbar}>
             <div className={styles.contentContainer}>
                 <div className={styles.logoContainer}>
-                    <h1>Eclipse</h1>
+                    <h1>Eclurity</h1>
                 </div>
                 <div className={styles.buttons}>
                     <Link href={"/login"}>Log in</Link>

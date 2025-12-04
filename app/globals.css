@@ -14,5 +14,10 @@
   }
 }
 body {
-  background: #0B0B0B;
+  background: #080808;
+}
+@media (max-width: 1050px) {
+  .no-scroll {
+    overflow: hidden;
+  }
 }

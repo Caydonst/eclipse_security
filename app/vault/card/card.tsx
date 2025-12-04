@@ -38,6 +38,7 @@ export default function Card({ open, setOpen, account, setSelectedCell, copiedAn
         setOpen(false);
         setSelectedCell(-1);
         setCopiedAnimation(false);
+        document.body.classList.remove("no-scroll");
     }
 
     const copyToClipboard = async (text: string) => {

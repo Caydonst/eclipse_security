@@ -22,8 +22,14 @@ interface Account {
     email: string;
     password: string;
 }
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    image: string;
+}
 
-export default function VaultClient({accounts}: { accounts: Account[] }) {
+export default function VaultClient({accounts, user}: { accounts: Account[], user: User }) {
     const [open, setOpen] = useState<boolean>(false);
     const [selectedAccount, setSelectedAccount] = useState<Account>(accounts[-1]);
     const [selectedAccountIndex, setSelectedAccountIndex] = useState<number | null>(null);
@@ -54,11 +60,14 @@ export default function VaultClient({accounts}: { accounts: Account[] }) {
             if (accountIndex >= 0) {
                 setSelectedAccount(accounts[accountIndex - 1]);
             }
+
+            document.body.classList.add("no-scroll");
             setSelectedAccountIndex(accountIndex);
             setOpen(true);
-        } else if (selectedAccountIndex == accountIndex) {
+        } else if (selectedAccountIndex === accountIndex) {
             setOpen(false);
             setSelectedCell(-1);
+            document.body.classList.remove("no-scroll");
         } else if (selectedAccountIndex !== accountIndex) {
             setIsAnimating(true);
             setOpen(false);
@@ -67,6 +76,7 @@ export default function VaultClient({accounts}: { accounts: Account[] }) {
                 if (accountIndex >= 0) {
                     setSelectedAccount(accounts[accountIndex - 1]);
                 }
+                document.body.classList.add("no-scroll");
                 setSelectedAccountIndex(accountIndex);
                 setOpen(true);
                 setIsAnimating(false);
@@ -93,12 +103,12 @@ export default function VaultClient({accounts}: { accounts: Account[] }) {
 
     return (
         <div className={styles.vaultPage}>
+            <div className={open ? `${styles.vaultOverlay} ${styles.vaultActive}` : styles.vaultOverlay}></div>
             <MobileSearchBar mobileSearchActive={mobileSearchActive} setMobileSearchActive={setMobileSearchActive} inputRef={inputRef} accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
                              setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}
                              searchSelected={searchSelected} searchAccounts={searchAccounts}
                              handleOpenAccount={handleOpenAccount} selectedCell={selectedCell} favorites={favorites}
                              toggleFavorited={toggleFavorited} />
-            <div className={open ? `${styles.vaultOverlay} ${styles.vaultActive}` : styles.vaultOverlay}></div>
             <div className={styles.mobileHeader}>
                 <div className={styles.mobileHeaderTop}>
                     <div className={styles.mobileLogoContainer}>
@@ -117,7 +127,7 @@ export default function VaultClient({accounts}: { accounts: Account[] }) {
                 </div>
             </div>
             <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle}
-                     handleOpenAccount={handleOpenAccount}/>
+                     handleOpenAccount={handleOpenAccount} user={user} />
             <div className={styles.topBar}>
                 <SearchBar accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
                            setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}

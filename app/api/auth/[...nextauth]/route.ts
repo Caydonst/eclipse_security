@@ -57,16 +57,32 @@ export const authOptions = {
         strategy: "jwt", // session stored in a secure JWT
     },
     callbacks: {
-        async jwt({ token, account, profile }: { token: JWT; account: any; profile: any }) {
-            if (profile) {
-                token.userId = profile.sub; // Google user id
+        async jwt({ token, account, profile, user }) {
+            // When logging in with Google
+            if (account && profile) {
+                token.userId = profile.sub;         // Google ID
+                token.name = profile.name;          // User's name
+                token.email = profile.email;        // Email
+                token.picture = profile.picture;    // Profile image
             }
+
+            // When logging in with credentials
+            if (user) {
+                token.userId = user.id;
+                token.email = user.email;
+            }
+
             return token;
         },
-        async session({ session, token }: { session: Session; token: JWT }) {
-            if (token.userId) {
-                session.user.id = token.userId;
-            }
+
+        async session({ session, token }) {
+            if (!session.user) session.user = {} as any;
+
+            session.user.id = token.userId as string;
+            session.user.name = token.name as string;
+            session.user.email = token.email as string;
+            session.user.image = token.picture as string;
+
             return session;
         },
     },
