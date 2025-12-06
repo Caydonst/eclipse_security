@@ -16,8 +16,11 @@
 body {
   background: #080808;
 }
+.no-scroll-desktop {
+  overflow: hidden;
+}
 @media (max-width: 1050px) {
-  .no-scroll {
+  .no-scroll-mobile {
     overflow: hidden;
   }
 }

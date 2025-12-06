@@ -10,22 +10,28 @@ interface User {
     image: string;
 }
 
-export default function ProfileCard({user}: {user: User}) {
-    console.log(user.name);
-    console.log(user.image);
+type props = {
+    user: User;
+    setProfileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function ProfileCard({user, setProfileMenuOpen}: props) {
+
     return (
         <>
-            <button className={styles.profileCard}>
-                <div className={styles.profileCardInner}>
-                    <div className={styles.profileImgContainer}>
-                        <img className={styles.profileImg} src={user.image} />
-                    </div>
-                    <p>{user.email}</p>
-                </div>
-            </button>
-            <button className={styles.profileCardSmall}>
+            <button className={styles.profileCard} onClick={() => setProfileMenuOpen(true)}>
                 <div className={styles.profileImgContainer}>
-                    <img className={styles.profileImg} src={user.image} />
+                    {user.image && (
+                        <img className={styles.profileImg} src={user.image} />
+                    )}
+                </div>
+                <p>{user.name}</p>
+            </button>
+            <button className={styles.profileCardSmall} onClick={() => setProfileMenuOpen(true)}>
+                <div className={styles.profileImgContainer}>
+                    {user.image && (
+                        <img className={styles.profileImg} src={user.image} />
+                    )}
                 </div>
             </button>
         </>

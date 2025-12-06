@@ -14,6 +14,8 @@ import React, {useState, useEffect, useRef} from "react";
 import AccountCard from "./AccountCard/AccountCard";
 import SearchBar from "./SearchBar/searchBar"
 import MobileSearchBar from "./SearchBar/mobileSearchBar"
+import profileMenu from "./profilePage/profileMenu"
+import ProfileMenu from "./profilePage/profileMenu";
 
 interface Account {
     id: number;
@@ -43,6 +45,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
     const [searchQuery, setSearchQuery] = useState<string>("");
     const [searchAccounts, setSearchAccounts] = useState<Account[]>([]);
     const [mobileSearchActive, setMobileSearchActive] = useState<boolean>(false);
+    const [profileMenuOpen, setProfileMenuOpen] = useState<boolean>(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -61,13 +64,13 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
                 setSelectedAccount(accounts[accountIndex - 1]);
             }
 
-            document.body.classList.add("no-scroll");
+            document.body.classList.add("no-scroll-mobile");
             setSelectedAccountIndex(accountIndex);
             setOpen(true);
         } else if (selectedAccountIndex === accountIndex) {
             setOpen(false);
             setSelectedCell(-1);
-            document.body.classList.remove("no-scroll");
+            document.body.classList.remove("no-scroll-mobile");
         } else if (selectedAccountIndex !== accountIndex) {
             setIsAnimating(true);
             setOpen(false);
@@ -76,7 +79,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
                 if (accountIndex >= 0) {
                     setSelectedAccount(accounts[accountIndex - 1]);
                 }
-                document.body.classList.add("no-scroll");
+                document.body.classList.add("no-scroll-mobile");
                 setSelectedAccountIndex(accountIndex);
                 setOpen(true);
                 setIsAnimating(false);
@@ -127,7 +130,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
                 </div>
             </div>
             <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle}
-                     handleOpenAccount={handleOpenAccount} user={user} />
+                     handleOpenAccount={handleOpenAccount} user={user} profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} />
             <div className={styles.topBar}>
                 <SearchBar accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
                            setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}
@@ -146,6 +149,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
                 <Card open={open} setOpen={setOpen} account={selectedAccount} setSelectedCell={setSelectedCell}
                       copiedAnimation={copiedAnimation} setCopiedAnimation={setCopiedAnimation} selectedAccountIndex={selectedAccountIndex} />
             </div>
+            <ProfileMenu profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} user={user} />
         </div>
     );
 }

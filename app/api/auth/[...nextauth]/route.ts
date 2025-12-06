@@ -60,10 +60,10 @@ export const authOptions = {
         async jwt({ token, account, profile, user }) {
             // When logging in with Google
             if (account && profile) {
-                token.userId = profile.sub;         // Google ID
-                token.name = profile.name;          // User's name
-                token.email = profile.email;        // Email
-                token.picture = profile.picture;    // Profile image
+                token.userId = profile.sub;
+                token.name = profile.name;
+                token.email = profile.email;
+                token.picture = upgradeGoogleImage(profile.picture, 512);
             }
 
             // When logging in with credentials
@@ -81,8 +81,7 @@ export const authOptions = {
             session.user.id = token.userId as string;
             session.user.name = token.name as string;
             session.user.email = token.email as string;
-            session.user.image = token.picture as string;
-
+            session.user.image = upgradeGoogleImage(token.picture, 512);
             return session;
         },
     },
@@ -91,6 +90,13 @@ export const authOptions = {
         error: "/login",
     },
 };
+
+function upgradeGoogleImage(url: string, size: number = 512) {
+    if (!url) return url;
+
+    // Replace =sXX-c at the end
+    return url.replace(/=s\d+-c$/, `=s${size}-c`);
+}
 
 // @ts-ignore
 const handler = NextAuth(authOptions);

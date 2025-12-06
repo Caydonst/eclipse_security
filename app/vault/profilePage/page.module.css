@@ -1,29 +1,105 @@
-.profilePage {
-    position: absolute;
+.profileMenu {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    transition: 0.3s;
+}
+.profileMenu.open {
+    visibility: visible;
+    opacity: 1;
+}
+.profileMenuInner {
+    width: 600px;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 20px;
+    background: #080808;
+    position: relative;
+    color: #fff;
+    gap: 14px;
+}
+.closeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 4px;
+    border-radius: 50%;
+}
+.closeIcon {
+    width: 30px;
+    height: 30px;
+    color: #fff;
+}
+.closeBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+}
+.profileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+.profileContainer img {
+    width: 100%;
+    height: 100%;
+}
+.name {
+    font-size: 30px;
+    font-weight: bold;
+}
+.email {
+    color: rgba(255, 255, 255, 0.5);
 }
 .logoutBtn {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    bottom: 10px;
     height: 50px;
-    background: #f54242;
-    border: none;
-    border-radius: 50px;
-    color: #fff;
+    left: 10px;
+    right: 10px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    color: #f54242;
     cursor: pointer;
     transition: 0.3s;
+    font-weight: bold;
 }
 .logoutBtn:hover {
-    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.05);
 }
 .logoutBtn:disabled {
     opacity: 0.5;
@@ -64,5 +140,15 @@
     .profilePage {
         bottom: 46px;
         top: 21px;
+    }
+}
+@media (max-width: 500px) {
+    .profileMenu {
+        background: #080808;
+        backdrop-filter: unset;
+    }
+    .profileMenuInner {
+        height: 100%;
+        border: none;
     }
 }

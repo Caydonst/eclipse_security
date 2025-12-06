@@ -26,7 +26,16 @@ interface User {
     image: string;
 }
 
-export default function Sidebar({selected, setSelected, setRouteTitle, handleOpenAccount, user}: {selected: string, setSelected: any, setRouteTitle: any, handleOpenAccount: any, user: User}) {
+type props = {
+    selected: boolean;
+    setSelected: React.Dispatch<React.SetStateAction<boolean>>;
+    setRouteTitle: React.Dispatch<React.SetStateAction<string>>;
+    handleOpenAccount: () => void;
+    user: User;
+    setProfileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Sidebar({selected, setSelected, setRouteTitle, handleOpenAccount, user, setProfileMenuOpen}: props) {
 
     const buttons = [
         { id: "all", label: "All Items", outline: <ListBulletOutline />, solid: <ListBulletSolid /> },
@@ -74,7 +83,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
                         ))}
                     </div>
                 </div>
-                <ProfileCard user={user} />
+                <ProfileCard user={user} setProfileMenuOpen={setProfileMenuOpen} />
             </div>
 
             {/* ----------------- MOBILE SIDEBAR ----------------- */}
@@ -98,7 +107,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
                         ))}
                     </div>
                 </div>
-                <ProfileCard user={user} />
+                <ProfileCard user={user} setProfileMenuOpen={setProfileMenuOpen} />
             </div>
         </>
     );

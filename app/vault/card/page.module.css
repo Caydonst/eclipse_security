@@ -38,7 +38,7 @@
 }
 .closeBtn {
     aspect-ratio: 1;
-    height: 100%;
+    padding: 4px;
     background: transparent;
     border: none;
     border-radius: 50%;

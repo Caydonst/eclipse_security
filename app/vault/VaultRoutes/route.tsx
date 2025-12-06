@@ -1,7 +1,7 @@
 import styles from "../page.module.css"
 import AccountCard from "@/app/vault/AccountCard/AccountCard";
 import React from "react";
-import ProfilePage from "../profilePage/profilePage";
+import ProfilePage from "../profilePage/profileMenu";
 
 type Account = {
     id: number;
