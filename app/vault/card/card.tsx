@@ -7,10 +7,10 @@ import {
     CreditCardIcon as CreditCardSolid,
     LockClosedIcon as LockClosedSolid
 } from "@heroicons/react/24/solid";
-import PasswordInfo from "./PasswordInfo"
-import PaymentCardInfo from "./PaymentCardInfo";
-import BankAccountInfo from "./BankAccountInfo";
-import CreateCardInfo from "./CreateCardInfo";
+import PasswordInfo from "./DisplayCard/PasswordInfo"
+import PaymentCardInfo from "./DisplayCard/PaymentCardInfo";
+import BankAccountInfo from "./DisplayCard/BankAccountInfo";
+import CreateCardInfo from "./CreateCard/CreateCardInfo";
 
 interface Account {
     id: number;

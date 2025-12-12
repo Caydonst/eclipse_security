@@ -1,6 +1,6 @@
-import styles from "./page.module.css"
-import {EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline";
-import React, {useEffect, useState} from "react";
+import styles from "../page.module.css"
+import {useEffect, useState} from "react";
+import {EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline"
 
 interface Account {
     id: number;
@@ -9,18 +9,17 @@ interface Account {
     email: string;
     password: string;
 }
-
 type props = {
     account: Account;
     copyToClipboard: (text: string) => Promise<void>;
     open: boolean;
 }
 
-export default function BankAccountInfo({ account, copyToClipboard, open }: props) {
-    const [showAccountNumber, setShowAccountNumber] = useState(false);
+export default function PasswordInfo({ account, copyToClipboard, open }: props) {
+    const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        setShowAccountNumber(false);
+        setShowPassword(false);
     }, [open])
 
     return (
@@ -28,16 +27,15 @@ export default function BankAccountInfo({ account, copyToClipboard, open }: prop
             <h1>{account.name}</h1>
             <div className={styles.inputsContainer}>
                 <div className={styles.openContainer}>
-                    <label htmlFor="cardNumberInput">Routing Number</label>
-                    <input id={"cardNumberInput"} type={"text"} value={account.password} readOnly={true} />
+                    <label htmlFor="emailInput">Login</label>
+                    <input id={"emailInput"} value={account.email} readOnly={true} />
                 </div>
-
                 <div className={styles.hiddenContainer}>
-                    <label htmlFor="cardExpirationInput">Account Number</label>
+                    <label htmlFor="passwordInput">Password</label>
                     <div className={styles.cardPasswordContainer}>
-                        <input id={"cardExpirationInput"} type={showAccountNumber ? "text" : "password"} value={account.password} readOnly={true} />
-                        <button className={styles.showPasswordBtn} onClick={() => setShowAccountNumber(!showAccountNumber)}>
-                            {showAccountNumber ? (
+                        <input id={"passwordInput"} type={showPassword ? "text" : "password"} value={account.password} readOnly={true} />
+                        <button className={styles.showPasswordBtn} onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? (
                                 <EyeSlashIcon className={styles.eyeIcon} />
                             ) : (
                                 <EyeIcon className={styles.eyeIcon} />

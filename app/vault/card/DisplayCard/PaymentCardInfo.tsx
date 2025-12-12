@@ -1,4 +1,4 @@
-import styles from "./page.module.css"
+import styles from "../page.module.css"
 import {EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline";
 import React, {useEffect, useState} from "react";
 

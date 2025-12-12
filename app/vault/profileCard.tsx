@@ -18,22 +18,13 @@ type props = {
 export default function ProfileCard({user, setProfileMenuOpen}: props) {
 
     return (
-        <>
-            <button className={styles.profileCard} onClick={() => setProfileMenuOpen(true)}>
-                <div className={styles.profileImgContainer}>
-                    {user.image && (
-                        <img className={styles.profileImg} src={user.image} />
-                    )}
-                </div>
-                <p>{user.name}</p>
-            </button>
-            <button className={styles.profileCardSmall} onClick={() => setProfileMenuOpen(true)}>
-                <div className={styles.profileImgContainer}>
-                    {user.image && (
-                        <img className={styles.profileImg} src={user.image} />
-                    )}
-                </div>
-            </button>
-        </>
+        <button className={styles.profileCard} onClick={() => setProfileMenuOpen(true)}>
+            <div className={styles.profileImgContainer}>
+                {user.image && (
+                    <img className={styles.profileImg} src={user.image} />
+                )}
+            </div>
+            <p>{user.name}</p>
+        </button>
     )
 }

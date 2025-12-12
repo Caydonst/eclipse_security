@@ -2,7 +2,7 @@
     height: 100svh;
     display: flex;
     --content-right: 600px;
-    --content-left: 250px;
+    --content-left: 80px;
     --content-left-small: 80px;
     position: relative;
 }
@@ -32,6 +32,39 @@
     /*box-shadow: 0 16px 14px 0 #000;*/
     z-index: 1;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.layoutSelector {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+.layoutSelector button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: transparent;
+    color: #fff;
+    fill: #fff;
+    height: 30px;
+    width: 30px;
+    transition: 0.3s;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.layoutSelector button > * {
+    width: 24px;
+    height: 24px;
+}
+.layoutSelector button:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 .desktopHeader {
     display: flex;
@@ -121,8 +154,6 @@
 }
 
 
-
-
 .searchItemsContainer .cell {
     flex-direction: row;
     justify-content: space-between;
@@ -187,7 +218,7 @@
 }
 .cell {
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+
     border-radius: 18px;
     aspect-ratio: 1;
     cursor: pointer;
@@ -195,10 +226,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     gap: 10px;
     position: relative;
     overflow: hidden;
     background: #080808;
+    transition: 0.3s;
     box-shadow: 0 0 8px #000;
 }
 .disabledCell {
@@ -220,6 +253,7 @@
 .cardAccountSelected {
     outline: rgba(255, 255, 255, 0.2) solid 5px;
     border-color: #fff;
+    background: rgba(255, 255, 255, 0.05);
 }
 .cell img {
     width: 30px;
@@ -263,14 +297,16 @@
 .headerDeleteBtn {
     background: transparent;
     border: none;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     width: 34px;
     height: 34px;
     cursor: pointer;
-    transition: 0.2s;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
 }
 .headerDeleteBtn:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -331,7 +367,8 @@
     text-overflow: ellipsis;
 }
 .cell:hover .headerDeleteBtn {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
 }
 .cardArea {
     position: fixed;
@@ -345,35 +382,24 @@
 .profileCard {
     position: absolute;
     bottom: 20px;
-    left: 16px;
-    right: 16px;
+    left: 15px;
+    right: 15px;
     display: flex;
     justify-content: start;
     align-items: center;
-    height: 58px;
+    height: 50px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     background: transparent;
     color: #fff;
-    border-radius: 18px;
+    border-radius: 50px;
     cursor: pointer;
     transition: 0.3s;
-    padding: 10px;
-    gap: 10px;
+    padding: 6px;
 }
-.profileCardInner {
+.profileCard p {
     position: absolute;
-    left: 10px;
-    right: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-.profileCardInner p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
+    left: 0;
+    width: 200px;
 }
 .profileImgContainer {
     height: 100%;
@@ -393,28 +419,6 @@
 .mobileHeader {
     display: none;
 }
-.profileCardSmall {
-    position: absolute;
-    bottom: 20px;
-    left: 16px;
-    right: 16px;
-    height: 48px;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background: #080808;
-    color: #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.profileCardSmall .profileImgContainer {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: gray;
-}
 @media (max-width: 1500px) {
     .topBar {
         left: var(--content-left-small);
@@ -424,12 +428,6 @@
     }
     .logo {
         margin: 0;
-    }
-    .profileCard {
-        display: none;
-    }
-    .profileCardSmall {
-        display: flex;
     }
 }
 @media (max-width: 1285px) {
@@ -514,9 +512,6 @@
     .headerDeleteBtn {
         display: flex;
     }
-    .profileCard {
-        display: none;
-    }
     .contentContainer {
         top: 66px;
         left: var(--content-left);
@@ -566,7 +561,7 @@
         width: 24px;
         height: auto;
         filter: invert(100%);
-        background: #F7F7F7;
+        background: transparent;
     }
     .mobileHeaderTop h1 {
         font-size: 20px;

@@ -63,11 +63,13 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
             {/* ----------------- DESKTOP SIDEBAR ----------------- */}
             <div className={styles.sideBar}>
                 <div className={styles.sideBarHeader}>
-                    <Image src={eclipse} alt={""} className={styles.logo}/>
+                    <div className={styles.headerIconContainer}>
+                        <Image src={eclipse} alt={""} className={styles.logo}/>
+                    </div>
                     <h1>Eclurity</h1>
                 </div>
                 <div className={styles.sidebarButtons}>
-                    <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} />Create New</button>
+                    <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><div  className={styles.addNewIcon}><PlusOutline /></div><p>Create New</p></button>
                     <div className={styles.routeBtnContainer}>
                         {buttons.map((btn) => (
                             <button
@@ -75,10 +77,10 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
                                 onClick={() => handleBtnClick(btn.id)}
                                 className={`${styles.sideBarButton} ${selected === btn.id ? styles.selected : ""}`}
                             >
-                  <span className={`${styles.sideBarIcon} ${selected === btn.id ? styles.selected: ""}`}>
+                  <div className={`${styles.sideBarIcon} ${selected === btn.id ? styles.selected: ""}`}>
                     {selected === btn.id ? btn.solid : btn.outline}
-                  </span>
-                                {btn.label}
+                  </div>
+                                <p>{btn.label}</p>
                             </button>
                         ))}
                     </div>
@@ -87,7 +89,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
             </div>
 
             {/* ----------------- MOBILE SIDEBAR ----------------- */}
-            <div className={styles.sidebarSmall}>
+            {/*<div className={styles.sidebarSmall}>
                 <div className={styles.sideBarHeader}>
                     <Image src={eclipse} alt={""} className={styles.logo}/>
                 </div>
@@ -108,7 +110,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
                     </div>
                 </div>
                 <ProfileCard user={user} setProfileMenuOpen={setProfileMenuOpen} />
-            </div>
+            </div>*/}
         </>
     );
 }
