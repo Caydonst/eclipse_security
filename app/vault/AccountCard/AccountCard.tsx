@@ -9,19 +9,12 @@ import {
     CreditCardIcon as CreditCardSolid,
     BuildingLibraryIcon as BuildingLibrarySolid,
 } from "@heroicons/react/24/solid";
-import EllipsisMenu from "./ellipsisMenu";
+import VaultItem from "@/app/vault/passwords"
 
-type Account = {
-    id: number;
-    type: string;
-    name: string;
-    email: string;
-    password: string;
-}
 
 type props = {
     index: number;
-    account: Account;
+    vaultItem: VaultItem;
     isFavorited: boolean;
     handleOpenAccount: (accountIndex: number) => void;
     toggleFavorited: (id: number) => void;
@@ -29,7 +22,7 @@ type props = {
     isAnimating: boolean;
 }
 
-export default function AccountCard({ index, handleOpenAccount, account, isFavorited, toggleFavorited, selectedCell, isAnimating }: props) {
+export default function AccountCard({ index, handleOpenAccount, vaultItem, isFavorited, toggleFavorited, selectedCell, isAnimating }: props) {
     const [ellipsisMenuOpen, setEllipsisMenuOpen] = useState(false);
 
     return (
@@ -42,29 +35,29 @@ export default function AccountCard({ index, handleOpenAccount, account, isFavor
             onClick={(e) => {
                 e.stopPropagation();
                 if (!isAnimating) {
-                    handleOpenAccount(account.id, index);
+                    handleOpenAccount(vaultItem.id, index);
                 }
             }}
         >
             <div className={styles.logoContainer}>
-                {account.type === "password" &&
+                {vaultItem.type === "password" &&
                     <LockClosedSolid className={styles.lockLogo} />
                 }
-                {account.type === "paymentCard" &&
+                {vaultItem.type === "paymentCard" &&
                     <CreditCardSolid className={styles.cardLogo} />
                 }
-                {account.type === "bankAccount" &&
+                {vaultItem.type === "bankAccount" &&
                     <BuildingLibrarySolid className={styles.bankLogo} />
                 }
             </div>
             <div className={styles.accountCardInfo}>
-                <h3>{account.name}</h3>
-                <p>{account.email}</p>
+                <h3>{vaultItem.name}</h3>
+                <p>{vaultItem.email}</p>
             </div>
             <div className={styles.cellHeader}>
                 <button className={styles.favBtn} onClick={(e) => {
                     e.stopPropagation()
-                    toggleFavorited(account.id)
+                    toggleFavorited(vaultItem.id)
                 }}>
                     {isFavorited ? (
                         <svg className={styles.starIconSelected} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z"/></svg>

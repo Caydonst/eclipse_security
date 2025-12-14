@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import VaultClient from "./VaultClient";
-import {accounts} from "./passwords"
+import {vaultItems} from "./passwords"
 
 
 export default async function VaultPage() {
@@ -14,5 +14,5 @@ export default async function VaultPage() {
     const user = session?.user;
     console.log(user)
 
-    return <VaultClient accounts={accounts} user={user} />;
+    return <VaultClient vaultItems={vaultItems} user={user} />;
 }

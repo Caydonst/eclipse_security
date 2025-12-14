@@ -1,3 +1,13 @@
+import accounts from "@/app/vault/passwords"
+
+interface Account {
+    id: number;
+    type: string;
+    name: string;
+    email: string;
+    password: string;
+}
+
 export async function createPassword(formData: FormData) {
     const login = formData.get('login') as string;
     const password = formData.get('password') as string;
@@ -11,6 +21,8 @@ export async function createPaymentCard(formData: FormData) {
     console.log("cardNumber: ", cardNumber);
     console.log("expiryDate: ", expiryDate);
     console.log("cvc: ", cvc);
+
+
 }
 
 export async function createBankAccount(formData: FormData) {

@@ -11,26 +11,20 @@ import PasswordInfo from "./DisplayCard/PasswordInfo"
 import PaymentCardInfo from "./DisplayCard/PaymentCardInfo";
 import BankAccountInfo from "./DisplayCard/BankAccountInfo";
 import CreateCardInfo from "./CreateCard/CreateCardInfo";
+import VaultItem from "@/app/vault/passwords"
 
-interface Account {
-    id: number;
-    type: string;
-    name: string;
-    email: string;
-    password: string;
-}
 
 type props = {
-    open: boolean
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>
-    account: Account
+    open: boolean;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    vaultItem: VaultItem;
     setSelectedCell: React.Dispatch<React.SetStateAction<number | null>>;
     copiedAnimation: boolean
     setCopiedAnimation: React.Dispatch<React.SetStateAction<boolean>>;
     selectedAccountIndex: number | null
 }
 
-export default function Card({ open, setOpen, account, setSelectedCell, copiedAnimation, setCopiedAnimation, selectedAccountIndex }: props) {
+export default function Card({ open, setOpen, vaultItem, setSelectedCell, copiedAnimation, setCopiedAnimation, selectedAccountIndex }: props) {
     const [showPassword, setShowPassword] = useState(false);
 
 
@@ -38,7 +32,7 @@ export default function Card({ open, setOpen, account, setSelectedCell, copiedAn
         setOpen(false);
         setSelectedCell(-1);
         setCopiedAnimation(false);
-        document.body.classList.remove("no-scroll");
+        document.body.classList.remove("no-scroll-mobile");
     }
 
     const copyToClipboard = async (text: string) => {
@@ -87,13 +81,13 @@ export default function Card({ open, setOpen, account, setSelectedCell, copiedAn
                 <>
                     <div className={styles.cardHeader}>
                         <div className={styles.cardIconContainer}>
-                            {account.type === "password" &&
+                            {vaultItem.type === "password" &&
                                 <LockClosedSolid className={styles.lockLogo} />
                             }
-                            {account.type === "paymentCard" &&
+                            {vaultItem.type === "paymentCard" &&
                                 <CreditCardSolid className={styles.cardLogo} />
                             }
-                            {account.type === "bankAccount" &&
+                            {vaultItem.type === "bankAccount" &&
                                 <BuildingLibrarySolid className={styles.bankLogo} />
                             }
                         </div>
@@ -101,14 +95,14 @@ export default function Card({ open, setOpen, account, setSelectedCell, copiedAn
                             <button className={styles.closeBtn} onClick={() => changeStates()}><XMarkIcon className={styles.closeIcon} /></button>
                         </div>
                     </div>
-                    {account.type === "password" && (
-                        <PasswordInfo account={account} copyToClipboard={copyToClipboard} open={open} />
+                    {vaultItem.type === "password" && (
+                        <PasswordInfo vaultItem={vaultItem} copyToClipboard={copyToClipboard} open={open} />
                     )}
-                    {account.type === "paymentCard" && (
-                        <PaymentCardInfo account={account} copyToClipboard={copyToClipboard} open={open} />
+                    {vaultItem.type === "paymentCard" && (
+                        <PaymentCardInfo vaultItem={vaultItem} copyToClipboard={copyToClipboard} open={open} />
                     )}
-                    {account.type === "bankAccount" && (
-                        <BankAccountInfo account={account} copyToClipboard={copyToClipboard} open={open} />
+                    {vaultItem.type === "bankAccount" && (
+                        <BankAccountInfo vaultItem={vaultItem} copyToClipboard={copyToClipboard} open={open} />
                     )}
                     <div className={`${styles.passwordCopiedMessage} ${copiedAnimation ? styles.animate : ""}`}>
                         <p>Password Copied</p>

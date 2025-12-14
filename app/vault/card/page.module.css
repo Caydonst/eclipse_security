@@ -60,7 +60,6 @@
 .cardIconContainer {
     height: 50px;
     width: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -70,16 +69,19 @@
     color: #FF4654;
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 18px #FF4654);
 }
 .cardLogo {
     color: #FF3AAD;
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 18px #FF3AAD);
 }
 .bankLogo {
     color: #3FC5FF;
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 18px #3FC5FF);
 }
 .cardIconContainer img {
     width: 30px;
@@ -197,6 +199,7 @@
     color: #fff;
     width: 20px;
     height: 20px;
+    filter: unset;
 }
 .selectorBtnPassword:hover,
 .selectorBtnCard:hover,

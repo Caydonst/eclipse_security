@@ -32,9 +32,9 @@ interface User {
     image: string;
 }
 
-export default function VaultClient({accounts, user}: { accounts: Account[], user: User }) {
+export default function VaultClient({vaultItems, user}: { vaultItems: Account, user: User }) {
     const [open, setOpen] = useState<boolean>(false);
-    const [selectedAccount, setSelectedAccount] = useState<Account>(accounts[-1]);
+    const [selectedAccount, setSelectedAccount] = useState<Account>(vaultItems[-1]);
     const [selectedAccountIndex, setSelectedAccountIndex] = useState<number | null>(null);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
     const [favorites, setFavorites] = useState<number[]>([]);
@@ -47,6 +47,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
     const [searchAccounts, setSearchAccounts] = useState<Account[]>([]);
     const [mobileSearchActive, setMobileSearchActive] = useState<boolean>(false);
     const [profileMenuOpen, setProfileMenuOpen] = useState<boolean>(false);
+    const [cellType, setCellType] = useState<string>("grid");
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -62,7 +63,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
 
         if (!open) {
             if (accountIndex >= 0) {
-                setSelectedAccount(accounts[accountIndex - 1]);
+                setSelectedAccount(vaultItems.items[accountIndex - 1]);
             }
 
             document.body.classList.add("no-scroll-mobile");
@@ -78,7 +79,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
 
             setTimeout(() => {
                 if (accountIndex >= 0) {
-                    setSelectedAccount(accounts[accountIndex - 1]);
+                    setSelectedAccount(vaultItems.items[accountIndex - 1]);
                 }
                 document.body.classList.add("no-scroll-mobile");
                 setSelectedAccountIndex(accountIndex);
@@ -108,7 +109,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
     return (
         <div className={styles.vaultPage}>
             <div className={open ? `${styles.vaultOverlay} ${styles.vaultActive}` : styles.vaultOverlay}></div>
-            <MobileSearchBar mobileSearchActive={mobileSearchActive} setMobileSearchActive={setMobileSearchActive} inputRef={inputRef} accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+            <MobileSearchBar mobileSearchActive={mobileSearchActive} setMobileSearchActive={setMobileSearchActive} inputRef={inputRef} vaultItems={vaultItems} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
                              setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}
                              searchSelected={searchSelected} searchAccounts={searchAccounts}
                              handleOpenAccount={handleOpenAccount} selectedCell={selectedCell} favorites={favorites}
@@ -133,7 +134,7 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
             <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle}
                      handleOpenAccount={handleOpenAccount} user={user} profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} />
             <div className={styles.topBar}>
-                <SearchBar accounts={accounts} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+                <SearchBar vaultItems={vaultItems} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
                            setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}
                            searchSelected={searchSelected} searchAccounts={searchAccounts}
                            handleOpenAccount={handleOpenAccount} selectedCell={selectedCell} favorites={favorites}
@@ -143,18 +144,25 @@ export default function VaultClient({accounts, user}: { accounts: Account[], use
                     <h1>{routeTitle}</h1>
                 </div>
                 <div className={styles.layoutSelector}>
-                    <button className={styles.rowBtn}><Bars4Icon /></button>
-                    <button className={styles.gridBtn}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M152 160C174.1 160 192 177.9 192 200L192 248C192 270.1 174.1 288 152 288L104 288C81.9 288 64 270.1 64 248L64 200C64 177.9 81.9 160 104 160L152 160zM344 288L296 288C273.9 288 256 270.1 256 248L256 200C256 177.9 273.9 160 296 160L344 160C366.1 160 384 177.9 384 200L384 248C384 270.1 366.1 288 344 288zM536 288L488 288C465.9 288 448 270.1 448 248L448 200C448 177.9 465.9 160 488 160L536 160C558.1 160 576 177.9 576 200L576 248C576 270.1 558.1 288 536 288zM536 480L488 480C465.9 480 448 462.1 448 440L448 392C448 369.9 465.9 352 488 352L536 352C558.1 352 576 369.9 576 392L576 440C576 462.1 558.1 480 536 480zM344 352C366.1 352 384 369.9 384 392L384 440C384 462.1 366.1 480 344 480L296 480C273.9 480 256 462.1 256 440L256 392C256 369.9 273.9 352 296 352L344 352zM152 480L104 480C81.9 480 64 462.1 64 440L64 392C64 369.9 81.9 352 104 352L152 352C174.1 352 192 369.9 192 392L192 440C192 462.1 174.1 480 152 480z"/></svg></button>
+                    <button className={cellType === "row" ? `${styles.rowBtn} ${styles.selected}` : `${styles.rowBtn}`} onClick={() => setCellType("row")}><Bars4Icon /></button>
+                    <button className={cellType === "grid" ? `${styles.gridBtn} ${styles.selected}` : `${styles.gridBtn}`} onClick={() => setCellType("grid")}>
+                        <svg className="svg-icon"
+                             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M928 1024h-288a96 96 0 0 1-96-96v-288a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32h-288a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32v-288z m-32-160h-288a96 96 0 0 1-96-96V96a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32h-288a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32V96zM384 1024H96a96 96 0 0 1-96-96v-288a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32v-288z m-32-160H96a96 96 0 0 1-96-96V96a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32V96z"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
-            <Route accounts={accounts} favorites={favorites} handleOpenAccount={handleOpenAccount}
+            <Route vaultItems={vaultItems} favorites={favorites} handleOpenAccount={handleOpenAccount}
                    toggleFavorited={toggleFavorited} selectedCell={selectedCell} selected={selected}
-                   isAnimating={isAnimating}/>
+                   isAnimating={isAnimating} cellType={cellType}/>
             <div className={styles.cardArea}>
-                <Card open={open} setOpen={setOpen} account={selectedAccount} setSelectedCell={setSelectedCell}
-                      copiedAnimation={copiedAnimation} setCopiedAnimation={setCopiedAnimation} selectedAccountIndex={selectedAccountIndex} />
+                <Card open={open} setOpen={setOpen} vaultItem={selectedAccount} setSelectedCell={setSelectedCell}
+                      copiedAnimation={copiedAnimation} setCopiedAnimation={setCopiedAnimation}
+                      selectedAccountIndex={selectedAccountIndex}/>
             </div>
-            <ProfileMenu profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} user={user} />
+            <ProfileMenu profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} user={user}/>
         </div>
     );
 }

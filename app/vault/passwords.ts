@@ -1,29 +1,48 @@
-interface Account {
+export interface Password {
     id: number;
-    type: string;
+    type: "password";
     name: string;
-    email: string;
+    login: string;
     password: string;
 }
+export interface PaymentCard {
+    id: number;
+    type: "paymentCard";
+    name: string;
+    cardNumber: string;
+    expirationDate: string;
+    cvc: string;
+}
+export interface BankAccount {
+    id: number;
+    type: "bankAccount";
+    name: string;
+    routingNumber: string;
+    accountNumber: string;
+}
+export type VaultItem = Password | PaymentCard | BankAccount
 
-export const accounts: Account[] = [
-    {id: 1, type: "password", name: "Email1", email: "myemail1@gmail.com", password: "mypassword1"},
-    {id: 2, type: "password", name: "Email2", email: "myemail2@gmail.com", password: "mypassword2"},
-    {id: 3, type: "paymentCard", name: "Card1", email: "myemail5@gmail.com", password: "mypassword5"},
-    {id: 4, type: "bankAccount", name: "Bank2", email: "myemail5@gmail.com", password: "mypassword5"},
-    {id: 5, type: "password", name: "Email3", email: "myemail3@gmail.com", password: "mypassword3"},
-    {id: 6, type: "password", name: "Email4", email: "myemail4@gmail.com", password: "mypassword4"},
-    {id: 7, type: "password", name: "Email5", email: "myemail5@gmail.com", password: "mypassword5"},
-    {id: 8, type: "paymentCard", name: "Card3", email: "myemail5@gmail.com", password: "mypassword5"},
-    {id: 9, type: "password", name: "Email2", email: "myemail2@gmail.com", password: "mypassword2"},
-    {id: 10, type: "password", name: "myaccount", email: "myemail3@gmail.com", password: "mypassword3"},
-    {id: 11, type: "password", name: "random", email: "myemail4@gmail.com", password: "mypassword4"},
-    {id: 12, type: "password", name: "testnotemail", email: "myemail5@gmail.com", password: "mypassword5"},
-    // Payment Cards
-    {id: 13, type: "paymentCard", name: "Card2", email: "myemail1@gmail.com", password: "mypassword1"},
-    {id: 14, type: "paymentCard", name: "Card4", email: "myemail1@gmail.com", password: "mypassword1"},
-    // Bank Accounts
-    {id: 15, type: "bankAccount", name: "Bank1", email: "myemail4@gmail.com", password: "mypassword4"},
-    {id: 16, type: "bankAccount", name: "Bank3", email: "myemail1@gmail.com", password: "mypassword1"},
+export interface Account {
+    items: VaultItem[];
+}
 
-]
+export const vaultItems: Account = {
+    items: [
+        {id: 1, type: "password", name: "Email1", login: "myemail1@gmail.com", password: "mypassword1"},
+        {id: 2, type: "password", name: "Email2", login: "myemail2@gmail.com", password: "mypassword2"},
+        {id: 3, type: "password", name: "Email3", login: "myemail3@gmail.com", password: "mypassword3"},
+        {id: 4, type: "password", name: "Email4", login: "myemail4@gmail.com", password: "mypassword4"},
+        {id: 5, type: "password", name: "Email5", login: "myemail5@gmail.com", password: "mypassword5"},
+        {id: 6, type: "password", name: "Email2", login: "myemail2@gmail.com", password: "mypassword2"},
+        {id: 7, type: "password", name: "myaccount", login: "myemail3@gmail.com", password: "mypassword3"},
+        {id: 8, type: "password", name: "random", login: "myemail4@gmail.com", password: "mypassword4"},
+        {id: 9, type: "password", name: "testnotemail", login: "myemail5@gmail.com", password: "mypassword5"},
+        {id: 10, type: "paymentCard", name: "Card2", cardNumber: "4400958645090956", expirationDate: "12/28", cvc: "956"},
+        {id: 11, type: "paymentCard", name: "Card4", cardNumber: "4400958645090956", expirationDate: "12/28", cvc: "956"},
+        {id: 12, type: "paymentCard", name: "Card3", cardNumber: "4400958645090956", expirationDate: "12/28", cvc: "956"},
+        {id: 13, type: "paymentCard", name: "Card1", cardNumber: "4400958645090956", expirationDate: "12/28", cvc: "956"},
+        {id: 14, type: "bankAccount", name: "Bank2", routingNumber: "003948534", accountNumber: "3023948543343"},
+        {id: 15, type: "bankAccount", name: "Bank1", routingNumber: "005819283", accountNumber: "30049534"},
+        {id: 16, type: "bankAccount", name: "Bank3", routingNumber: "009916647", accountNumber: "349500023948"},
+    ]
+}

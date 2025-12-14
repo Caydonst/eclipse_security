@@ -2,30 +2,25 @@ import styles from "@/app/vault/page.module.css";
 import {MagnifyingGlassIcon as MagnifyingGlassOutline} from "@heroicons/react/24/outline";
 import React, {useEffect, useRef, useState} from "react";
 import AccountCard from "../AccountCard/AccountCard"
+import Account from "@/app/vault/passwords"
+import VaultItem from "@/app/vault/passwords"
 
-type Account = {
-    id: number;
-    type: string;
-    name: string;
-    email: string;
-    password: string;
-}
 
 type props = {
-    accounts: Account[]
+    vaultItems: Account
     searchQuery: string
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>
-    setSearchAccounts: React.Dispatch<React.SetStateAction<Account[]>>
+    setSearchAccounts: React.Dispatch<React.SetStateAction<Account>>
     setSearchSelected: React.Dispatch<React.SetStateAction<boolean>>
     favorites: number[]
     handleOpenAccount: (accountIndex: number) => void
     toggleFavorited: (id: number) => void
     selectedCell: number | null
     searchSelected: boolean
-    searchAccounts: Account[]
+    searchAccounts: Account
 }
 
-export default function SearchBar({accounts, searchQuery, setSearchQuery, setSearchAccounts, setSearchSelected, searchSelected, searchAccounts, handleOpenAccount, selectedCell, favorites, toggleFavorited}: props) {
+export default function SearchBar({vaultItems, searchQuery, setSearchQuery, setSearchAccounts, setSearchSelected, searchSelected, searchAccounts, handleOpenAccount, selectedCell, favorites, toggleFavorited}: props) {
     const searchRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -45,8 +40,8 @@ export default function SearchBar({accounts, searchQuery, setSearchQuery, setSea
 
     useEffect(() => {
         setSearchAccounts([]);
-        accounts.forEach((account: Account) => {
-            if ((account.name.toLowerCase().startsWith(searchQuery.toLowerCase()) && (searchQuery !== ""))) {
+        vaultItems.items.forEach((vaultItem: VaultItem) => {
+            if ((vaultItem.name.toLowerCase().startsWith(searchQuery.toLowerCase()) && (searchQuery !== ""))) {
                 setSearchAccounts(prev => [...prev, account])
             }
         })
@@ -62,10 +57,10 @@ export default function SearchBar({accounts, searchQuery, setSearchQuery, setSea
             {searchSelected
                 &&
                 <div className={styles.searchItemsContainer}>
-                    {searchAccounts.map((account: Account, i: number) => {
+                    {searchAccounts.map((vaultItem: VaultItem, i: number) => {
                         const isFavorited = favorites.includes(account.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account}
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} vaultItem={vaultItem}
                                          isFavorited={isFavorited} toggleFavorited={toggleFavorited}
                                          selectedCell={selectedCell}/>
                         )

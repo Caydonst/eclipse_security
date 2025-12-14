@@ -60,11 +60,20 @@
     border-radius: 8px;
     cursor: pointer;
 }
-.layoutSelector button > * {
+.layoutSelector .rowBtn > * {
     width: 24px;
     height: 24px;
 }
-.layoutSelector button:hover {
+.layoutSelector .gridBtn > * {
+    width: 18px;
+    height: 18px;
+}
+.layoutSelector .rowBtn:hover,
+.layoutSelector .gridBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+.layoutSelector .rowBtn.selected,
+.layoutSelector .gridBtn.selected {
     background: rgba(255, 255, 255, 0.1);
 }
 .desktopHeader {
@@ -196,12 +205,21 @@
 .searchContainer.active .searchItemsContainer {
     margin-top: 20px;
 }
-.contentContainer {
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.contentContainer.grid {
     position: absolute;
     top: 140px;
     right: var(--content-right);
     left: var(--content-left);
-
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(210px, 1fr));
@@ -210,17 +228,8 @@
     gap: 10px;
     animation: fadeIn 0.5s;
 }
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-.cell {
+.contentContainer.grid .cell {
     width: 100%;
-
     border-radius: 18px;
     aspect-ratio: 1;
     cursor: pointer;
@@ -236,6 +245,116 @@
     transition: 0.3s;
     box-shadow: 0 0 8px #000;
 }
+.contentContainer.grid .cellHeader {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+.contentContainer.grid .logoContainer {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.contentContainer.grid .accountCardInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 0 16px;
+}
+.contentContainer.grid .accountCardInfo h3 {
+    color: #fff;
+}
+.contentContainer.grid .accountCardInfo p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+.contentContainer.grid .accountCardInfo h3,
+.contentContainer.grid .accountCardInfo p {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+
+.contentContainer.row {
+    position: absolute;
+    top: 140px;
+    right: var(--content-right);
+    left: var(--content-left);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    animation: fadeIn 0.5s;
+}
+.contentContainer.row .cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    padding: 20px;
+    aspect-ratio: unset;
+    gap: 20px;
+    background: #080808;
+    transition: 0.3s;
+    box-shadow: 0 0 8px #000;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    cursor: pointer;
+}
+.contentContainer.row .logoContainer {
+    flex-shrink: 0;
+}
+.contentContainer.row .accountCardInfo {
+    width: 50px;
+    flex: 1;
+    padding: 0;
+}
+.contentContainer.row .cellHeader {
+    position: unset;
+    width: unset;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+}
+.contentContainer.row .accountCardInfo {
+    align-items: start;
+}
+.contentContainer.row .accountCardInfo h3 {
+    color: #fff;
+}
+.contentContainer.row .accountCardInfo p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+.contentContainer.row .accountCardInfo h3,
+.contentContainer.row .accountCardInfo p {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
 .disabledCell {
     pointer-events: none !important; /* No clicks or hovers */
     opacity: 1; /* or dim it if you want */
@@ -252,7 +371,8 @@
 .cellOverlay.active {
     display: block;
 }
-.cardAccountSelected {
+.contentContainer.grid .cardAccountSelected,
+.contentContainer.row .cardAccountSelected {
     outline: rgba(255, 255, 255, 0.2) solid 5px;
     border-color: #fff;
     background: rgba(255, 255, 255, 0.05);
@@ -260,41 +380,30 @@
 .cell img {
     width: 30px;
 }
-.cell:hover {
+.contentContainer.grid .cell:hover,
+.contentContainer.row .cell:hover {
     border-color: #fff;
 }
-.cellHeader {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-.logoContainer {
-    width: 50px;
-    height: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
+
+
+
 .lockLogo {
     color: #FF4654;
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 18px #FF4654);
 }
 .cardLogo {
     color: #FF3AAD;
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 18px #FF3AAD);
 }
 .bankLogo {
     color: #3FC5FF;
     width: 30px;
     height: 30px;
+    filter: drop-shadow(0 0 18px #3FC5FF);
 }
 .headerDeleteBtn {
     background: transparent;
@@ -344,29 +453,6 @@
 }
 .favBtn:hover .starIcon {
     fill: yellow;
-}
-.accountCardInfo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    padding: 0 16px;
-}
-.accountCardInfo h3 {
-    color: #fff;
-}
-.accountCardInfo p {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
-}
-.accountCardInfo h3,
-.accountCardInfo p {
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 .cell:hover .headerDeleteBtn {
     visibility: visible;
@@ -433,45 +519,7 @@
     }
 }
 @media (max-width: 1285px) {
-    .contentContainer {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        flex-direction: column;
-    }
-    .cell {
-        flex-direction: row;
-        justify-content: space-between;
-        max-width: 100%;
-        padding: 20px;
-        aspect-ratio: unset;
-        gap: 20px;
-    }
-    .logoContainer {
-        flex-shrink: 0;
-    }
-    .accountCardInfo {
-        width: 50px;
-        flex: 1;
-        padding: 0;
-    }
-    .cellHeader {
-        position: unset;
-        width: unset;
-        right: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0;
-        padding: 0;
-    }
-    .accountCardInfo {
-        align-items: start;
-    }
-    .accountCardInfo h3,
-    .accountCardInfo p {
-        max-width: 100%;
-    }
+
 }
 @media (max-width: 1050px) {
     .vaultPage {
@@ -490,10 +538,7 @@
         opacity: 0;
         transition: 0.3s;
     }
-    .vaultActive {
-        visibility: hidden;
-        opacity: 0;
-    }
+
     .cardArea {
         z-index: 20;
         border: none;

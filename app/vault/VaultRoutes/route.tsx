@@ -2,87 +2,105 @@ import styles from "../page.module.css"
 import AccountCard from "@/app/vault/AccountCard/AccountCard";
 import React from "react";
 import ProfilePage from "../profilePage/profileMenu";
-
-type Account = {
-    id: number;
-    type: string;
-    name: string;
-    email: string;
-    password: string;
-}
+import VaultItem from "@/app/vault/passwords"
+import Account from "@/app/vault/passwords"
+import Password from "@/app/vault/passwords"
+import PaymentCard from "@/app/vault/passwords"
+import BankAccount from "@/app/vault/passwords"
 
 type props = {
-    accounts: Account[]
-    favorites: number[]
-    handleOpenAccount: (accountIndex: number) => void
-    toggleFavorited: (id: number) => void
-    selectedCell: number | null
-    selected: string
-    isAnimating: boolean
+    accounts: Account;
+    favorites: number[];
+    handleOpenAccount: (accountIndex: number) => void;
+    toggleFavorited: (id: number) => void;
+    selectedCell: number | null;
+    selected: string;
+    isAnimating: boolean;
+    cellType: string;
 }
 
-export default function Route({ accounts, favorites, handleOpenAccount, toggleFavorited, selectedCell, selected, isAnimating }: props) {
-    const passwords: Account[] = accounts.filter((account: Account) => account.type === "password");
-    const paymentCards: Account[] = accounts.filter((account: Account) => account.type === "paymentCard");
-    const bankAccounts: Account[] = accounts.filter((account: Account) => account.type === "bankAccount");
+export default function Route({ vaultItems, favorites, handleOpenAccount, toggleFavorited, selectedCell, selected, isAnimating, cellType }: props) {
+    const passwords: Password = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "password");
+    const paymentCards: PaymentCard = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "paymentCard");
+    const bankAccounts: BankAccount = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "bankAccount");
 
     return (
         <div className={styles.main}>
             {selected === "all"
                 &&
-                <div className={styles.contentContainer}>
-                    {accounts.map((account: Account, i: number) => {
-                        const isFavorited = favorites.includes(account.id);
+                <div className={`
+                    ${styles.contentContainer}
+                    ${cellType === "grid" ? styles.grid : ""}
+                    ${cellType === "row" ? styles.row : ""}
+                `}>
+                    {vaultItems.items.map((vaultItem: VaultItem, i: number) => {
+                        const isFavorited = favorites.includes(vaultItem.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} vaultItem={vaultItem} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
             }
             {selected === "passwords"
                 &&
-                <div className={styles.contentContainer}>
-                    {passwords.map((account: Account, i: number) => {
-                        const isFavorited = favorites.includes(account.id);
+                <div className={`
+                    ${styles.contentContainer}
+                    ${cellType === "grid" ? styles.grid : ""}
+                    ${cellType === "row" ? styles.row : ""}
+                `}>
+                    {passwords.map((vaultItem: VaultItem, i: number) => {
+                        const isFavorited = favorites.includes(vaultItem.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} vaultItem={vaultItem} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
             }
             {selected === "cards"
                 &&
-                <div className={styles.contentContainer}>
-                    {paymentCards.map((account: Account, i: number) => {
-                        const isFavorited = favorites.includes(account.id);
+                <div className={`
+                    ${styles.contentContainer}
+                    ${cellType === "grid" ? styles.grid : ""}
+                    ${cellType === "row" ? styles.row : ""}
+                `}>
+                    {paymentCards.map((vaultItem: VaultItem, i: number) => {
+                        const isFavorited = favorites.includes(vaultItem.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} vaultItem={vaultItem} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
             }
             {selected === "bank"
                 &&
-                <div className={styles.contentContainer}>
-                    {bankAccounts.map((account: Account, i: number) => {
-                        const isFavorited = favorites.includes(account.id);
+                <div className={`
+                    ${styles.contentContainer}
+                    ${cellType === "grid" ? styles.grid : ""}
+                    ${cellType === "row" ? styles.row : ""}
+                `}>
+                    {bankAccounts.map((vaultItem: VaultItem, i: number) => {
+                        const isFavorited = favorites.includes(vaultItem.id);
                         return (
-                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} account={account} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
+                            <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} vaultItem={vaultItem} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />
                         )
                     })}
                 </div>
             }
             {selected === "favorites"
                 &&
-                <div className={styles.contentContainer}>
-                    {accounts
-                        .filter((account: Account) => favorites.includes(account.id))
-                        .map((account: Account, i: number) => (
+                <div className={`
+                    ${styles.contentContainer}
+                    ${cellType === "grid" ? styles.grid : ""}
+                    ${cellType === "row" ? styles.row : ""}
+                `}>
+                    {vaultItems.items
+                        .filter((vaultItem: VaultItem) => favorites.includes(vaultItem.id))
+                        .map((vaultItem: VaultItem, i: number) => (
                             <AccountCard
                                 key={i}
                                 index={i}
                                 handleOpenAccount={handleOpenAccount}
-                                account={account}
+                                vaultItem={vaultItem}
                                 isFavorited={true}
                                 toggleFavorited={toggleFavorited}
                                 selectedCell={selectedCell}

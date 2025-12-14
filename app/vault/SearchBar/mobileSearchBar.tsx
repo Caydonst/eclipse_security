@@ -2,20 +2,13 @@ import styles from "./page.module.css";
 import React, {useEffect} from "react";
 import {XMarkIcon} from "@heroicons/react/24/outline"
 import AccountCard from "@/app/vault/AccountCard/AccountCard";
-
-type Account = {
-    id: number;
-    type: string;
-    name: string;
-    email: string;
-    password: string;
-}
+import Account from "@/app/vault/passwords"
 
 type props = {
     mobileSearchActive: boolean
     setMobileSearchActive: React.Dispatch<React.SetStateAction<boolean>>
     inputRef: React.RefObject<HTMLInputElement | null>;
-    accounts: Account[]
+    vaultItems: Account;
     searchQuery: string
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>
     setSearchAccounts: React.Dispatch<React.SetStateAction<Account[]>>
@@ -28,7 +21,7 @@ type props = {
     searchAccounts: Account[]
 }
 
-export default function MobileSearchBar({ mobileSearchActive, setMobileSearchActive, inputRef, accounts, searchQuery, setSearchQuery, setSearchAccounts, setSearchSelected, searchSelected, searchAccounts, handleOpenAccount, selectedCell, favorites, toggleFavorited }: props) {
+export default function MobileSearchBar({ mobileSearchActive, setMobileSearchActive, inputRef, vaultItems, searchQuery, setSearchQuery, setSearchAccounts, setSearchSelected, searchSelected, searchAccounts, handleOpenAccount, selectedCell, favorites, toggleFavorited }: props) {
     const changeSearchQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
         console.log(searchQuery);
@@ -41,7 +34,7 @@ export default function MobileSearchBar({ mobileSearchActive, setMobileSearchAct
 
     useEffect(() => {
         setSearchAccounts([]);
-        accounts.forEach((account: Account) => {
+        vaultItems.items.forEach((account: Account) => {
             if ((account.name.toLowerCase().startsWith(searchQuery.toLowerCase()) && (searchQuery !== ""))) {
                 setSearchAccounts(prev => [...prev, account])
             }
