@@ -80,17 +80,21 @@ export default function Card({ open, setOpen, vaultItem, setSelectedCell, copied
             {selectedAccountIndex !== null && selectedAccountIndex >= 0 &&
                 <>
                     <div className={styles.cardHeader}>
-                        <div className={styles.cardIconContainer}>
-                            {vaultItem.type === "password" &&
+                        {vaultItem.type === "password" &&
+                            <div className={styles.lockLogoContainer}>
                                 <LockClosedSolid className={styles.lockLogo} />
-                            }
-                            {vaultItem.type === "paymentCard" &&
+                            </div>
+                        }
+                        {vaultItem.type === "paymentCard" &&
+                            <div className={styles.cardLogoContainer}>
                                 <CreditCardSolid className={styles.cardLogo} />
-                            }
-                            {vaultItem.type === "bankAccount" &&
+                            </div>
+                        }
+                        {vaultItem.type === "bankAccount" &&
+                            <div className={styles.bankLogoContainer}>
                                 <BuildingLibrarySolid className={styles.bankLogo} />
-                            }
-                        </div>
+                            </div>
+                        }
                         <div className={styles.headerButtons}>
                             <button className={styles.closeBtn} onClick={() => changeStates()}><XMarkIcon className={styles.closeIcon} /></button>
                         </div>

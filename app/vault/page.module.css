@@ -25,13 +25,31 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 50px;
-    height: 140px;
+    padding: 20px 20px 0 20px;
     gap: 20px;
-    backdrop-filter: blur(20px);
-    /*box-shadow: 0 16px 14px 0 #000;*/
     z-index: 1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.topBar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 40px;
+   background: #080808;
+}
+.topBarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    gap: 20px;
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
 }
 .layoutSelector {
     position: absolute;
@@ -54,8 +72,8 @@
     background: transparent;
     color: #fff;
     fill: #fff;
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
     transition: 0.3s;
     border-radius: 8px;
     cursor: pointer;
@@ -112,11 +130,10 @@
     justify-content: center;
     align-items: start;
     position: relative;
-    padding: 0 20px;
 }
 .searchIcon {
     position: absolute;
-    left: 34px;
+    left: 20px;
     top: 50%;
     transform: translateY(-50%);
     color: rgba(255, 255, 255, 0.4);
@@ -217,14 +234,14 @@
 }
 .contentContainer.grid {
     position: absolute;
-    top: 140px;
+    top: 150px;
     right: var(--content-right);
     left: var(--content-left);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(210px, 1fr));
     justify-items: center;
-    padding: 30px;
+    padding: 40px;
     gap: 10px;
     animation: fadeIn 0.5s;
 }
@@ -255,12 +272,10 @@
     padding: 10px;
 }
 .contentContainer.grid .logoContainer {
-    width: 50px;
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    position: relative;
 }
 .contentContainer.grid .accountCardInfo {
     display: flex;
@@ -290,7 +305,7 @@
 
 .contentContainer.row {
     position: absolute;
-    top: 140px;
+    top: 150px;
     right: var(--content-right);
     left: var(--content-left);
     display: flex;
@@ -317,6 +332,7 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     cursor: pointer;
+    overflow: hidden;
 }
 .contentContainer.row .logoContainer {
     flex-shrink: 0;
@@ -385,25 +401,65 @@
     border-color: #fff;
 }
 
-
-
+.lockLogoContainer,
+.cardLogoContainer,
+.bankLogoContainer {
+    position: relative;
+}
+.lockLogoContainer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(255, 70, 84, 1) 0%, rgba(255, 70, 84, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
+}
 .lockLogo {
     color: #FF4654;
     width: 30px;
     height: 30px;
-    filter: drop-shadow(0 0 18px #FF4654);
+    position: relative;
+}
+.cardLogoContainer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(255, 58, 173, 1) 0%, rgba(255, 58, 173, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
 }
 .cardLogo {
     color: #FF3AAD;
     width: 30px;
     height: 30px;
-    filter: drop-shadow(0 0 18px #FF3AAD);
+}
+.bankLogoContainer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(63, 197, 255, 1) 0%, rgba(63, 197, 255, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
 }
 .bankLogo {
     color: #3FC5FF;
     width: 30px;
     height: 30px;
-    filter: drop-shadow(0 0 18px #3FC5FF);
 }
 .headerDeleteBtn {
     background: transparent;
@@ -464,7 +520,6 @@
     right: 0;
     bottom: 0;
     width: var(--content-right);
-    border-left: 1px solid rgba(255, 255, 255, 0.05);
     z-index: 1;
 }
 .profileCard {

@@ -1,7 +1,7 @@
 .cardContainer {
     position: fixed;
     bottom: 0;
-    width: 560px;
+    width: 580px;
     background: #080808;
     top: 20px;
     right: 20px;
@@ -29,6 +29,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 .headerButtons {
     display: flex;
@@ -57,31 +58,65 @@
     width: 30px;
     height: 30px;
 }
-.cardIconContainer {
-    height: 50px;
+.lockLogoContainer,
+.cardLogoContainer,
+.bankLogoContainer {
+    position: relative;
+}
+.lockLogoContainer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 50px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(255, 70, 84, 1) 0%, rgba(255, 70, 84, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
 }
 .lockLogo {
     color: #FF4654;
     width: 30px;
     height: 30px;
-    filter: drop-shadow(0 0 18px #FF4654);
+    position: relative;
+}
+.cardLogoContainer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(255, 58, 173, 1) 0%, rgba(255, 58, 173, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
 }
 .cardLogo {
     color: #FF3AAD;
     width: 30px;
     height: 30px;
-    filter: drop-shadow(0 0 18px #FF3AAD);
+}
+.bankLogoContainer::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(63, 197, 255, 1) 0%, rgba(63, 197, 255, 0) 100%);
+    filter: blur(25px);
+    transition: 0.3s;
 }
 .bankLogo {
     color: #3FC5FF;
     width: 30px;
     height: 30px;
-    filter: drop-shadow(0 0 18px #3FC5FF);
 }
 .cardIconContainer img {
     width: 30px;

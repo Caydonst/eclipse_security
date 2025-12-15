@@ -24,13 +24,19 @@ export default function CreateCardInfo({ changeStates }: props) {
             <div className={styles.cardHeader}>
                 <div className={styles.cardIconContainer}>
                     {selectedType === "password" &&
-                        <LockClosedSolid className={styles.lockLogo} />
+                        <div className={styles.lockLogoContainer}>
+                            <LockClosedSolid className={styles.lockLogo}/>
+                        </div>
                     }
                     {selectedType === "paymentCard" &&
-                        <CreditCardSolid className={styles.cardLogo} />
+                        <div className={styles.cardLogoContainer}>
+                            <CreditCardSolid className={styles.cardLogo}/>
+                        </div>
                     }
                     {selectedType === "bankAccount" &&
-                        <BuildingLibrarySolid className={styles.bankLogo} />
+                        <div className={styles.bankLogoContainer}>
+                            <BuildingLibrarySolid className={styles.bankLogo}/>
+                        </div>
                     }
                 </div>
                 <div className={styles.headerButtons}>

@@ -39,20 +39,32 @@ export default function AccountCard({ index, handleOpenAccount, vaultItem, isFav
                 }
             }}
         >
-            <div className={styles.logoContainer}>
-                {vaultItem.type === "password" &&
+            {vaultItem.type === "password" &&
+                <div className={styles.lockLogoContainer}>
                     <LockClosedSolid className={styles.lockLogo} />
-                }
-                {vaultItem.type === "paymentCard" &&
+                </div>
+            }
+            {vaultItem.type === "paymentCard" &&
+                <div className={styles.cardLogoContainer}>
                     <CreditCardSolid className={styles.cardLogo} />
-                }
-                {vaultItem.type === "bankAccount" &&
+                </div>
+            }
+            {vaultItem.type === "bankAccount" &&
+                <div className={styles.bankLogoContainer}>
                     <BuildingLibrarySolid className={styles.bankLogo} />
-                }
-            </div>
+                </div>
+            }
             <div className={styles.accountCardInfo}>
                 <h3>{vaultItem.name}</h3>
-                <p>{vaultItem.email}</p>
+                {vaultItem.type === "password" &&
+                    <p>{vaultItem.login}</p>
+                }
+                {vaultItem.type === "paymentCard" &&
+                    <p>****************</p>
+                }
+                {vaultItem.type === "bankAccount" &&
+                    <p>{vaultItem.routingNumber}</p>
+                }
             </div>
             <div className={styles.cellHeader}>
                 <button className={styles.favBtn} onClick={(e) => {

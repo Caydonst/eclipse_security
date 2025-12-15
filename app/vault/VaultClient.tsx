@@ -134,24 +134,26 @@ export default function VaultClient({vaultItems, user}: { vaultItems: Account, u
             <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle}
                      handleOpenAccount={handleOpenAccount} user={user} profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} />
             <div className={styles.topBar}>
-                <SearchBar vaultItems={vaultItems} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
-                           setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}
-                           searchSelected={searchSelected} searchAccounts={searchAccounts}
-                           handleOpenAccount={handleOpenAccount} selectedCell={selectedCell} favorites={favorites}
-                           toggleFavorited={toggleFavorited}
-                />
-                <div className={styles.desktopHeader}>
-                    <h1>{routeTitle}</h1>
-                </div>
-                <div className={styles.layoutSelector}>
-                    <button className={cellType === "row" ? `${styles.rowBtn} ${styles.selected}` : `${styles.rowBtn}`} onClick={() => setCellType("row")}><Bars4Icon /></button>
-                    <button className={cellType === "grid" ? `${styles.gridBtn} ${styles.selected}` : `${styles.gridBtn}`} onClick={() => setCellType("grid")}>
-                        <svg className="svg-icon"
-                             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M928 1024h-288a96 96 0 0 1-96-96v-288a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32h-288a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32v-288z m-32-160h-288a96 96 0 0 1-96-96V96a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32h-288a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32V96zM384 1024H96a96 96 0 0 1-96-96v-288a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32v-288z m-32-160H96a96 96 0 0 1-96-96V96a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32V96z"/>
-                        </svg>
-                    </button>
+                <div className={styles.topBarContainer}>
+                    <SearchBar vaultItems={vaultItems} searchQuery={searchQuery} setSearchQuery={setSearchQuery}
+                               setSearchAccounts={setSearchAccounts} setSearchSelected={setSearchSelected}
+                               searchSelected={searchSelected} searchAccounts={searchAccounts}
+                               handleOpenAccount={handleOpenAccount} selectedCell={selectedCell} favorites={favorites}
+                               toggleFavorited={toggleFavorited}
+                    />
+                    <div className={styles.desktopHeader}>
+                        <h1>{routeTitle}</h1>
+                    </div>
+                    <div className={styles.layoutSelector}>
+                        <button className={cellType === "row" ? `${styles.rowBtn} ${styles.selected}` : `${styles.rowBtn}`} onClick={() => setCellType("row")}><Bars4Icon /></button>
+                        <button className={cellType === "grid" ? `${styles.gridBtn} ${styles.selected}` : `${styles.gridBtn}`} onClick={() => setCellType("grid")}>
+                            <svg className="svg-icon"
+                                 viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M928 1024h-288a96 96 0 0 1-96-96v-288a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32h-288a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32v-288z m-32-160h-288a96 96 0 0 1-96-96V96a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32h-288a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32V96zM384 1024H96a96 96 0 0 1-96-96v-288a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32v-288z m-32-160H96a96 96 0 0 1-96-96V96a96 96 0 0 1 96-96h288a96 96 0 0 1 96 96v288a96 96 0 0 1-96 96z m32-384a32 32 0 0 0-32-32H96a32 32 0 0 0-32 32v288a32 32 0 0 0 32 32h288a32 32 0 0 0 32-32V96z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
             <Route vaultItems={vaultItems} favorites={favorites} handleOpenAccount={handleOpenAccount}
