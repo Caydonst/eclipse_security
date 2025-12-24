@@ -46,3 +46,7 @@ export const vaultItems: Account = {
         {id: 16, type: "bankAccount", name: "Bank3", routingNumber: "009916647", accountNumber: "349500023948"},
     ]
 }
+
+export async function GET() {
+    return vaultItems;
+}

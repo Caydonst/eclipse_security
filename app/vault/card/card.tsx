@@ -11,7 +11,7 @@ import PasswordInfo from "./DisplayCard/PasswordInfo"
 import PaymentCardInfo from "./DisplayCard/PaymentCardInfo";
 import BankAccountInfo from "./DisplayCard/BankAccountInfo";
 import CreateCardInfo from "./CreateCard/CreateCardInfo";
-import VaultItem from "@/app/vault/passwords"
+import {VaultItem, Account} from "@/app/api/vault/vaultItems"
 
 
 type props = {
@@ -19,12 +19,13 @@ type props = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     vaultItem: VaultItem;
     setSelectedCell: React.Dispatch<React.SetStateAction<number | null>>;
-    copiedAnimation: boolean
+    copiedAnimation: boolean;
     setCopiedAnimation: React.Dispatch<React.SetStateAction<boolean>>;
-    selectedAccountIndex: number | null
+    selectedAccountIndex: number | null;
+    setVaultItems: React.Dispatch<React.SetStateAction<Account>>;
 }
 
-export default function Card({ open, setOpen, vaultItem, setSelectedCell, copiedAnimation, setCopiedAnimation, selectedAccountIndex }: props) {
+export default function Card({ open, setOpen, vaultItem, setSelectedCell, copiedAnimation, setCopiedAnimation, selectedAccountIndex, setVaultItems }: props) {
     const [showPassword, setShowPassword] = useState(false);
 
 
@@ -114,7 +115,7 @@ export default function Card({ open, setOpen, vaultItem, setSelectedCell, copied
                 </>
             }
             {selectedAccountIndex !== null && selectedAccountIndex === -1 &&
-                <CreateCardInfo changeStates={changeStates} triggerAnimation={triggerAnimation} />
+                <CreateCardInfo changeStates={changeStates} triggerAnimation={triggerAnimation} setVaultItems={setVaultItems} />
             }
         </div>
     )

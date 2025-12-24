@@ -1,9 +1,14 @@
 import styles from "../page.module.css"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { createPaymentCard } from "@/app/api/card/route"
+import {Account} from "@/app/api/vault/vaultItems"
 
-export default function CreatePaymentCard() {
-    const [expiryDate, setExpiryDate] = useState('');
+type props = {
+    setVaultItems: React.Dispatch<React.SetStateAction<Account>>
+}
+
+export default function CreatePaymentCard({ setVaultItems }: props) {
+    const [expirationDate, setExpirationDate] = useState('');
     const [cvc, setCvc] = useState('');
 
     const handleExpiryChange = (e) => {
@@ -19,7 +24,7 @@ export default function CreatePaymentCard() {
             formattedValue = `${digits.slice(0, 2)} / ${digits.slice(2)}`;
         }
 
-        setExpiryDate(formattedValue);
+        setExpirationDate(formattedValue);
     };
 
     const handleCvcChange = (e) => {
@@ -28,8 +33,13 @@ export default function CreatePaymentCard() {
         setCvc(digits);
     }
 
+    function newPaymentCard(formData: FormData) {
+        const items = createPaymentCard(formData)
+        setVaultItems(items)
+    }
+
     return (
-        <form className={styles.paymentCardForm} action={createPaymentCard}>
+        <form className={styles.paymentCardForm} action={newPaymentCard}>
             <div className={styles.createInputsContainer}>
                 <h2>Payment Card</h2>
                 <div className={styles.createInput}>
@@ -38,7 +48,7 @@ export default function CreatePaymentCard() {
                 </div>
                 <div className={styles.createInput}>
                     <label htmlFor="expirationInput">Expiration Date</label>
-                    <input id={"expirationInput"} name={"expiryDate"} type={"text"} placeholder={"MM / YY"} maxLength={"7"} value={expiryDate} onChange={(e) => handleExpiryChange(e)} />
+                    <input id={"expirationInput"} name={"expirationDate"} type={"text"} placeholder={"MM / YY"} maxLength={"7"} value={expirationDate} onChange={(e) => handleExpiryChange(e)} />
                 </div>
                 <div className={styles.createInput}>
                     <label htmlFor="cvcInput">CVC</label>

@@ -9,12 +9,14 @@ import {XMarkIcon} from "@heroicons/react/24/outline";
 import CreatePassword from "./CreatePassword";
 import CreatePaymentCard from "./CreatePaymentCard";
 import CreateBankAccount from "./CreateBankAccount";
+import {Account} from "@/app/api/vault/vaultItems"
 
 type props = {
     changeStates: () => void;
+    setVaultItems: React.Dispatch<React.SetStateAction<Account>>;
 }
 
-export default function CreateCardInfo({ changeStates }: props) {
+export default function CreateCardInfo({ changeStates, setVaultItems }: props) {
     const [cardType, setCardType] = useState("");
     const [selectedType, setSelectedType] = useState("password");
 
@@ -69,7 +71,7 @@ export default function CreateCardInfo({ changeStates }: props) {
                     <CreatePassword />
                 )}
                 {selectedType === "paymentCard" && (
-                    <CreatePaymentCard />
+                    <CreatePaymentCard setVaultItems={setVaultItems} />
                 )}
                 {selectedType === "bankAccount" && (
                     <CreateBankAccount />

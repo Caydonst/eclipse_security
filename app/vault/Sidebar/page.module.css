@@ -161,11 +161,11 @@
 .sideBarButton.selected::after {
     content: "";
     position: absolute;
-    left: -17px;
+    left: -18px;
     top: 50%;
     transform: translateY(-50%);
     width: 6px;
-    height: 30px;
+    height: 24px;
     background: #fff;
     border-radius: 50px;
     transition: 0.3s;
@@ -192,69 +192,6 @@
 .sideBarButton:hover {
     background: rgba(255, 255, 255, 0.1);
 }
-.sidebarSmall {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background: #080808;
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-    display: none;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-    width: 80px;
-    z-index: 2;
-    gap: 40px;
-    padding: 0 16px;
-    transition: 0.15s;
-}
-.sidebarSmall:hover {
-    width: 200px;
-}
-.sidebarSmall:hover .sidebarSmallButton {
-    aspect-ratio: unset;
-    height: 40px;
-}
-.sidebarSmall h1 {
-    color: #fff;
-    padding: 30px 20px;
-}
-.sidebarSmall .addNewBtn {
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 16px;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    cursor: pointer;
-    gap: 10px;
-    font-size: 16px;
-    transition: 0.2s;
-    background: #fff;
-    color: #000;
-    position: relative;
-}
-.sidebarSmallButton {
-    background: transparent;
-    border: none;
-    border-radius: 16px;
-    width: 100%;
-    aspect-ratio: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.sidebarSmallButton.selected {
-    background: rgba(255, 255, 255, 0.15);
-}
-.sidebarSmallButton:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
 .sideBarLogoContainer {
     height: 100px;
     display: flex;
@@ -269,41 +206,106 @@
     width: 100%;
     gap: 5px;
 }
-.sidebarSmallButton.selected {
-    background: rgba(255, 255, 255, 0.15);
-    position: relative;
-}
-.sidebarSmallButton.selected::after {
-    content: "";
-    position: absolute;
-    left: -19px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 30px;
-    background: #fff;
-    border-radius: 50px;
-    transition: 0.3s;
-}
-.sidebarSmallButton.selected::before {
-    content: "";
-    position: absolute;
-    left: -41px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    filter: blur(25px);
-    transition: 0.3s;
-}
 .sidebarButtons .sideBarIcon {
     color: #fff;
 }
 .sidebarButtons .sideBarIcon.selected {
     color: #fff;
 }
+
+/* ---------------- MOBILE BAR ---------------- */
+
+.sidebarSmall {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #080808;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 2;
+}
+.sidebarSmallButtons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.routeBtnContainerSmall {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+}
+.addNewBtnSmall {
+    position: relative;
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    background: #0B0B0B;
+    height: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.addNewIconSmall {
+    color: #fff;
+    width: 24px;
+    height: 24px;
+}
+.sidebarSmallButton {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    border-radius: 18px;
+}
+.sidebarSmallButtonInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebarSmallButton .sidebarSmallButtonInner .sideBarSmallIcon {
+    color: #fff;
+    width: 24px;
+    height: 24px;
+}
+
+.sidebarSmallButton.selected {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebarSmallButton.selected::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50px;
+}
+
+
 /* ------------- ALL ITEMS BUTTON ------------- */
 .sideBarButton.selected:nth-child(1)::after {
     background: #fff;
@@ -324,7 +326,7 @@
     background-image: radial-gradient(circle, rgba(255, 70, 84, 1) 0%, rgba(255, 70, 84, 0) 100%);
 }
 .sidebarButtons .sideBarButton.selected:nth-child(2) .sideBarIcon.selected > *,
-.sidebarButtons .sidebarSmallButton.selected:nth-child(2) .sideBarIcon.selected {
+.sidebarSmallButtons .sidebarSmallButton.selected:nth-child(2) .sideBarSmallIcon.selected {
     color: #FF4654;
 }
 /* ------------- PAYMENT CARDS BUTTON ------------- */
@@ -337,7 +339,7 @@
     background-image: radial-gradient(circle, rgba(255, 58, 173, 1) 0%, rgba(255, 58, 173, 0) 100%);
 }
 .sidebarButtons .sideBarButton.selected:nth-child(3) .sideBarIcon.selected > *,
-.sidebarButtons .sidebarSmallButton.selected:nth-child(3) .sideBarIcon.selected {
+.sidebarSmallButtons .sidebarSmallButton.selected:nth-child(3) .sideBarSmallIcon.selected {
     color: #FF3AAD;
 }
 /* ------------- BANK ACCOUNTS BUTTON ------------- */
@@ -350,7 +352,7 @@
     background-image: radial-gradient(circle, rgba(63, 197, 255, 1) 0%, rgba(63, 197, 255, 0) 100%);
 }
 .sidebarButtons .sideBarButton.selected:nth-child(4) .sideBarIcon.selected > *,
-.sidebarButtons .sidebarSmallButton.selected:nth-child(4) .sideBarIcon.selected {
+.sidebarSmallButtons .sidebarSmallButton.selected:nth-child(4) .sideBarSmallIcon.selected {
     color: #3FC5FF;
 }
 /* ------------- FAVORITES BUTTON ------------- */
@@ -363,41 +365,15 @@
     background-image: radial-gradient(circle, rgba(255, 197, 38, 1) 0%, rgba(255, 197, 38, 0) 100%);
 }
 .sidebarButtons .sideBarButton.selected:nth-child(5) .sideBarIcon.selected > *,
-.sidebarButtons .sidebarSmallButton.selected:nth-child(5) .sideBarIcon.selected {
+.sidebarSmallButtons .sidebarSmallButton.selected:nth-child(5) .sideBarSmallIcon.selected {
     color: #FFC526;
-}
-@media (max-width: 1500px) {
-    .sidebarSmall {
-        display: flex;
-    }
-
 }
 @media (max-width: 500px) {
     .sidebarSmall {
-        top: unset;
-        width: 100%;
-        height: 60px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #000;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        border-right: none;
         display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: row;
-        padding: 0 10px;
-        z-index: 2;
     }
-    .sideBarIcon {
-        color: rgba(255, 255, 255, 0.4);
-    }
-    .sidebarSmallButton {
-        height: 44px;
-        width: 44px;
-    }
-    .sideBarLogoContainer {
+    .sideBar {
         display: none;
     }
+
 }

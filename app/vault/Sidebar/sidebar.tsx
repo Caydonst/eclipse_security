@@ -18,6 +18,7 @@ import {
     StarIcon as StarSolid,
 } from "@heroicons/react/24/solid";
 import ProfileCard from "../profileCard";
+import {Account} from "@/app/api/vault/vaultItems"
 
 interface User {
     id: string;
@@ -33,9 +34,10 @@ type props = {
     handleOpenAccount: () => void;
     user: User;
     setProfileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setVaultItems: React.Dispatch<React.SetStateAction<Account>>;
 }
 
-export default function Sidebar({selected, setSelected, setRouteTitle, handleOpenAccount, user, setProfileMenuOpen}: props) {
+export default function Sidebar({selected, setSelected, setRouteTitle, handleOpenAccount, user, setProfileMenuOpen, setVaultItems}: props) {
 
     const buttons = [
         { id: "all", label: "All Items", outline: <ListBulletOutline />, solid: <ListBulletSolid /> },
@@ -89,28 +91,25 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
             </div>
 
             {/* ----------------- MOBILE SIDEBAR ----------------- */}
-            {/*<div className={styles.sidebarSmall}>
-                <div className={styles.sideBarHeader}>
-                    <Image src={eclipse} alt={""} className={styles.logo}/>
-                </div>
-                <div className={styles.sidebarButtons}>
-                    <button className={styles.addNewBtn} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.sideBarIcon} /></button>
-                    <div className={styles.routeBtnContainer}>
+            <div className={styles.sidebarSmall}>
+                <div className={styles.sidebarSmallButtons}>
+                    <button className={styles.addNewBtnSmall} onClick={() => handleOpenAccount(-1)}><PlusOutline className={styles.addNewIconSmall} /></button>
+                    <div className={styles.routeBtnContainerSmall}>
                         {buttons.map((btn) => (
-                            <button
-                                key={btn.id}
-                                onClick={() => handleBtnClick(btn.id)}
-                                className={`${styles.sidebarSmallButton} ${selected === btn.id ? styles.selected : ""}`}
-                            >
-                  <span className={`${styles.sideBarIcon} ${selected === btn.id ? styles.selected : ""}`}>
+                            <div key={btn.id} className={`${styles.sidebarSmallButton} ${selected === btn.id ? styles.selected : ""}`}>
+                                <button
+                                    onClick={() => handleBtnClick(btn.id)}
+                                    className={styles.sidebarSmallButtonInner}
+                                >
+                  <span className={`${styles.sideBarSmallIcon} ${selected === btn.id ? styles.selected : ""}`}>
                     {selected === btn.id ? btn.solid : btn.outline}
                   </span>
-                            </button>
+                                </button>
+                            </div>
                         ))}
                     </div>
                 </div>
-                <ProfileCard user={user} setProfileMenuOpen={setProfileMenuOpen} />
-            </div>*/}
+            </div>
         </>
     );
 }

@@ -72,8 +72,8 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: radial-gradient(circle, rgba(255, 70, 84, 1) 0%, rgba(255, 70, 84, 0) 100%);
-    filter: blur(25px);
+    background-image: radial-gradient(circle, rgba(255, 70, 84, 0.5) 0%, rgba(255, 70, 84, 0) 100%);
+    filter: blur(15px);
     transition: 0.3s;
 }
 .lockLogo {
@@ -91,8 +91,8 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: radial-gradient(circle, rgba(255, 58, 173, 1) 0%, rgba(255, 58, 173, 0) 100%);
-    filter: blur(25px);
+    background-image: radial-gradient(circle, rgba(255, 58, 173, 0.5) 0%, rgba(255, 58, 173, 0) 100%);
+    filter: blur(15px);
     transition: 0.3s;
 }
 .cardLogo {
@@ -109,8 +109,8 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: radial-gradient(circle, rgba(63, 197, 255, 1) 0%, rgba(63, 197, 255, 0) 100%);
-    filter: blur(25px);
+    background-image: radial-gradient(circle, rgba(63, 197, 255, 0.5) 0%, rgba(63, 197, 255, 0) 100%);
+    filter: blur(15px);
     transition: 0.3s;
 }
 .bankLogo {

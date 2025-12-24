@@ -1,15 +1,15 @@
 import styles from "../page.module.css"
 import AccountCard from "@/app/vault/AccountCard/AccountCard";
-import React from "react";
+import React, {useEffect} from "react";
 import ProfilePage from "../profilePage/profileMenu";
-import VaultItem from "@/app/vault/passwords"
-import Account from "@/app/vault/passwords"
-import Password from "@/app/vault/passwords"
-import PaymentCard from "@/app/vault/passwords"
-import BankAccount from "@/app/vault/passwords"
+import {VaultItem} from "@/app/api/vault/vaultItems"
+import {Account} from "@/app/api/vault/vaultItems"
+import {Password} from "@/app/api/vault/vaultItems"
+import {PaymentCard} from "@/app/api/vault/vaultItems"
+import {BankAccount} from "@/app/api/vault/vaultItems"
 
 type props = {
-    accounts: Account;
+    vaultItems: Account;
     favorites: number[];
     handleOpenAccount: (accountIndex: number) => void;
     toggleFavorited: (id: number) => void;
@@ -17,12 +17,28 @@ type props = {
     selected: string;
     isAnimating: boolean;
     cellType: string;
+    setCellType: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function Route({ vaultItems, favorites, handleOpenAccount, toggleFavorited, selectedCell, selected, isAnimating, cellType }: props) {
-    const passwords: Password = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "password");
-    const paymentCards: PaymentCard = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "paymentCard");
-    const bankAccounts: BankAccount = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "bankAccount");
+export default function Route({ vaultItems, favorites, handleOpenAccount, toggleFavorited, selectedCell, selected, isAnimating, cellType, setCellType }: props) {
+    const passwords: VaultItem[] = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "password");
+    const paymentCards: VaultItem[] = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "paymentCard");
+    const bankAccounts: VaultItem[] = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "bankAccount");
+
+    useEffect(() => {
+        function displayWindowSize() {
+            const currentWidth = window.innerWidth;
+            if (currentWidth <= 500) {
+                setCellType("row");
+            }
+            console.log(currentWidth);
+            // You can add your custom logic here
+        }
+
+
+        window.addEventListener('resize', displayWindowSize);
+
+    }, []);
 
     return (
         <div className={styles.main}>

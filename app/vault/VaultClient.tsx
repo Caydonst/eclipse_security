@@ -17,14 +17,8 @@ import MobileSearchBar from "./SearchBar/mobileSearchBar"
 import profileMenu from "./profilePage/profileMenu"
 import ProfileMenu from "./profilePage/profileMenu";
 import {Bars4Icon} from "@heroicons/react/24/outline"
+import {Account, VaultItem} from "@/app/api/vault/vaultItems"
 
-interface Account {
-    id: number;
-    type: string;
-    name: string;
-    email: string;
-    password: string;
-}
 interface User {
     id: string;
     name: string;
@@ -32,9 +26,9 @@ interface User {
     image: string;
 }
 
-export default function VaultClient({vaultItems, user}: { vaultItems: Account, user: User }) {
+export default function VaultClient({userVaultItems, user}: { userVaultItems: Account, user: User }) {
     const [open, setOpen] = useState<boolean>(false);
-    const [selectedAccount, setSelectedAccount] = useState<Account>(vaultItems[-1]);
+    const [selectedAccount, setSelectedAccount] = useState<VaultItem>(userVaultItems.items[-1]);
     const [selectedAccountIndex, setSelectedAccountIndex] = useState<number | null>(null);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
     const [favorites, setFavorites] = useState<number[]>([]);
@@ -44,12 +38,17 @@ export default function VaultClient({vaultItems, user}: { vaultItems: Account, u
     const [copiedAnimation, setCopiedAnimation] = useState<boolean>(false);
     const [searchSelected, setSearchSelected] = useState<boolean>(false);
     const [searchQuery, setSearchQuery] = useState<string>("");
-    const [searchAccounts, setSearchAccounts] = useState<Account[]>([]);
+    const [searchAccounts, setSearchAccounts] = useState<VaultItem[]>([]);
     const [mobileSearchActive, setMobileSearchActive] = useState<boolean>(false);
     const [profileMenuOpen, setProfileMenuOpen] = useState<boolean>(false);
-    const [cellType, setCellType] = useState<string>("grid");
+    const [cellType, setCellType] = useState<string>("row");
+    const [vaultItems, setVaultItems] = useState<Account>(userVaultItems);
 
     const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        console.log(vaultItems);
+    }, [vaultItems]);
 
     const toggleFavorited = (id: number) => {
         setFavorites((prev) => prev.includes(id)
@@ -115,21 +114,12 @@ export default function VaultClient({vaultItems, user}: { vaultItems: Account, u
                              handleOpenAccount={handleOpenAccount} selectedCell={selectedCell} favorites={favorites}
                              toggleFavorited={toggleFavorited} />
             <div className={styles.mobileHeader}>
-                <div className={styles.mobileHeaderTop}>
-                    <div className={styles.mobileLogoContainer}>
-                        <Image src={eclipse} alt={""} className={styles.mobileLogo}/>
-                    </div>
-                    <div className={styles.mobileHeaderRight}>
-                        <button className={styles.mobileSearchBtn} onClick={() => handleMobileSearchClick()}>
-                            <MagnifyingGlassOutline
-                                className={styles.mobileSearchIcon}/></button>
-                        <button className={styles.profileBtn} onClick={() => handleProfileClick("profile")}><UserIcon
-                            className={styles.userIcon}/></button>
-                    </div>
-                </div>
-                <div className={styles.mobileHeaderBottom}>
-                    <h1>{routeTitle}</h1>
-                </div>
+                <button className={styles.profileBtn} onClick={() => handleProfileClick("profile")}><UserIcon
+                    className={styles.userIcon}/></button>
+                <h1>{routeTitle}</h1>
+                <button className={styles.mobileSearchBtn} onClick={() => handleMobileSearchClick()}>
+                    <MagnifyingGlassOutline
+                        className={styles.mobileSearchIcon}/></button>
             </div>
             <Sidebar selected={selected} setSelected={setSelected} setRouteTitle={setRouteTitle}
                      handleOpenAccount={handleOpenAccount} user={user} profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} />
@@ -158,11 +148,11 @@ export default function VaultClient({vaultItems, user}: { vaultItems: Account, u
             </div>
             <Route vaultItems={vaultItems} favorites={favorites} handleOpenAccount={handleOpenAccount}
                    toggleFavorited={toggleFavorited} selectedCell={selectedCell} selected={selected}
-                   isAnimating={isAnimating} cellType={cellType}/>
+                   isAnimating={isAnimating} cellType={cellType} setCellType={setCellType} />
             <div className={styles.cardArea}>
                 <Card open={open} setOpen={setOpen} vaultItem={selectedAccount} setSelectedCell={setSelectedCell}
                       copiedAnimation={copiedAnimation} setCopiedAnimation={setCopiedAnimation}
-                      selectedAccountIndex={selectedAccountIndex}/>
+                      selectedAccountIndex={selectedAccountIndex} setVaultItems={setVaultItems} />
             </div>
             <ProfileMenu profileMenuOpen={profileMenuOpen} setProfileMenuOpen={setProfileMenuOpen} user={user}/>
         </div>
