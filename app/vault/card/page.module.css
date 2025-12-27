@@ -291,7 +291,9 @@
     height: 2px;
     background: #3FC5FF;
 }
-.paymentCardForm {
+.paymentCardForm,
+.bankAccountForm,
+.loginForm{
     width: 100%;
 }
 .createInputsContainer {
@@ -356,6 +358,12 @@
 .footerColor {
     width: 100%;
     height: 3px;
+}
+.createInputsContainer hr {
+    border: none;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
 }
 @keyframes moveDown {
     0% {

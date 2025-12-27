@@ -8,10 +8,15 @@ type props = {
 }
 
 export default function CreatePaymentCard({ setVaultItems }: props) {
+    const [name, setName] = useState("")
     const [expirationDate, setExpirationDate] = useState('');
     const [cvc, setCvc] = useState('');
 
-    const handleExpiryChange = (e) => {
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    }
+
+    const handleExpiryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const rawValue = e.target.value;
 
         let digits = rawValue.replace(/\D/g, '');
@@ -27,7 +32,7 @@ export default function CreatePaymentCard({ setVaultItems }: props) {
         setExpirationDate(formattedValue);
     };
 
-    const handleCvcChange = (e) => {
+    const handleCvcChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const rawValue = e.target.value;
         const digits = rawValue.replace(/\D/g, '');
         setCvc(digits);
@@ -43,8 +48,13 @@ export default function CreatePaymentCard({ setVaultItems }: props) {
             <div className={styles.createInputsContainer}>
                 <h2>Payment Card</h2>
                 <div className={styles.createInput}>
+                    <label htmlFor={"nameInput"}>Name</label>
+                    <input id={"nameInput"} name={"name"} placeholder={"Name"} type={"text"} maxLength={"255"} value={name} onChange={(e) => handleNameChange(e)} />
+                </div>
+                <hr/>
+                <div className={styles.createInput}>
                     <label htmlFor="cardNumberInput">Card Number</label>
-                    <input id={"cardNumberInput"} name={"cardNumber"} type={"text"} placeholder={"Card Number"} />
+                    <input id={"cardNumberInput"} name={"cardNumber"} type={"text"} placeholder={"Card Number"} maxLength={"255"} />
                 </div>
                 <div className={styles.createInput}>
                     <label htmlFor="expirationInput">Expiration Date</label>

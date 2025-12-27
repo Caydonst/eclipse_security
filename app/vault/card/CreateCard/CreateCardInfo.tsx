@@ -6,7 +6,7 @@ import {
     LockClosedIcon as LockClosedSolid
 } from "@heroicons/react/24/solid";
 import {XMarkIcon} from "@heroicons/react/24/outline";
-import CreatePassword from "./CreatePassword";
+import CreateLogin from "./CreateLogin";
 import CreatePaymentCard from "./CreatePaymentCard";
 import CreateBankAccount from "./CreateBankAccount";
 import {Account} from "@/app/api/vault/vaultItems"
@@ -18,14 +18,14 @@ type props = {
 
 export default function CreateCardInfo({ changeStates, setVaultItems }: props) {
     const [cardType, setCardType] = useState("");
-    const [selectedType, setSelectedType] = useState("password");
+    const [selectedType, setSelectedType] = useState("login");
 
 
     return (
         <>
             <div className={styles.cardHeader}>
                 <div className={styles.cardIconContainer}>
-                    {selectedType === "password" &&
+                    {selectedType === "login" &&
                         <div className={styles.lockLogoContainer}>
                             <LockClosedSolid className={styles.lockLogo}/>
                         </div>
@@ -49,8 +49,8 @@ export default function CreateCardInfo({ changeStates, setVaultItems }: props) {
                 <h1>Create New</h1>
                 <div className={styles.selectorContainer}>
                     <button
-                        className={`${styles.selectorBtnPassword} ${selectedType === "password" ? styles.selected : ""}`}
-                        onClick={() => setSelectedType("password")}
+                        className={`${styles.selectorBtnPassword} ${selectedType === "login" ? styles.selected : ""}`}
+                        onClick={() => setSelectedType("login")}
                     >
                         <LockClosedSolid className={styles.lockLogo} />
                     </button>
@@ -67,14 +67,14 @@ export default function CreateCardInfo({ changeStates, setVaultItems }: props) {
                         <BuildingLibrarySolid className={styles.bankLogo} />
                     </button>
                 </div>
-                {selectedType === "password" && (
-                    <CreatePassword />
+                {selectedType === "login" && (
+                    <CreateLogin setVaultItems={setVaultItems} />
                 )}
                 {selectedType === "paymentCard" && (
                     <CreatePaymentCard setVaultItems={setVaultItems} />
                 )}
                 {selectedType === "bankAccount" && (
-                    <CreateBankAccount />
+                    <CreateBankAccount setVaultItems={setVaultItems} />
                 )}
             </div>
         </>

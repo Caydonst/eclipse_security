@@ -4,7 +4,7 @@ import React, {useEffect} from "react";
 import ProfilePage from "../profilePage/profileMenu";
 import {VaultItem} from "@/app/api/vault/vaultItems"
 import {Account} from "@/app/api/vault/vaultItems"
-import {Password} from "@/app/api/vault/vaultItems"
+import {Login} from "@/app/api/vault/vaultItems"
 import {PaymentCard} from "@/app/api/vault/vaultItems"
 import {BankAccount} from "@/app/api/vault/vaultItems"
 
@@ -21,7 +21,7 @@ type props = {
 }
 
 export default function Route({ vaultItems, favorites, handleOpenAccount, toggleFavorited, selectedCell, selected, isAnimating, cellType, setCellType }: props) {
-    const passwords: VaultItem[] = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "password");
+    const logins: VaultItem[] = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "login");
     const paymentCards: VaultItem[] = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "paymentCard");
     const bankAccounts: VaultItem[] = vaultItems.items.filter((vaultItem: VaultItem) => vaultItem.type === "bankAccount");
 
@@ -57,14 +57,14 @@ export default function Route({ vaultItems, favorites, handleOpenAccount, toggle
                     })}
                 </div>
             }
-            {selected === "passwords"
+            {selected === "logins"
                 &&
                 <div className={`
                     ${styles.contentContainer}
                     ${cellType === "grid" ? styles.grid : ""}
                     ${cellType === "row" ? styles.row : ""}
                 `}>
-                    {passwords.map((vaultItem: VaultItem, i: number) => {
+                    {logins.map((vaultItem: VaultItem, i: number) => {
                         const isFavorited = favorites.includes(vaultItem.id);
                         return (
                             <AccountCard key={i} index={i} handleOpenAccount={handleOpenAccount} vaultItem={vaultItem} isFavorited={isFavorited} toggleFavorited={toggleFavorited} selectedCell={selectedCell} isAnimating={isAnimating} />

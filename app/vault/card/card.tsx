@@ -7,7 +7,7 @@ import {
     CreditCardIcon as CreditCardSolid,
     LockClosedIcon as LockClosedSolid
 } from "@heroicons/react/24/solid";
-import PasswordInfo from "./DisplayCard/PasswordInfo"
+import LoginInfo from "./DisplayCard/LoginInfo"
 import PaymentCardInfo from "./DisplayCard/PaymentCardInfo";
 import BankAccountInfo from "./DisplayCard/BankAccountInfo";
 import CreateCardInfo from "./CreateCard/CreateCardInfo";
@@ -81,7 +81,7 @@ export default function Card({ open, setOpen, vaultItem, setSelectedCell, copied
             {selectedAccountIndex !== null && selectedAccountIndex >= 0 &&
                 <>
                     <div className={styles.cardHeader}>
-                        {vaultItem.type === "password" &&
+                        {vaultItem.type === "login" &&
                             <div className={styles.lockLogoContainer}>
                                 <LockClosedSolid className={styles.lockLogo} />
                             </div>
@@ -100,8 +100,8 @@ export default function Card({ open, setOpen, vaultItem, setSelectedCell, copied
                             <button className={styles.closeBtn} onClick={() => changeStates()}><XMarkIcon className={styles.closeIcon} /></button>
                         </div>
                     </div>
-                    {vaultItem.type === "password" && (
-                        <PasswordInfo vaultItem={vaultItem} copyToClipboard={copyToClipboard} open={open} />
+                    {vaultItem.type === "login" && (
+                        <LoginInfo vaultItem={vaultItem} copyToClipboard={copyToClipboard} open={open} />
                     )}
                     {vaultItem.type === "paymentCard" && (
                         <PaymentCardInfo vaultItem={vaultItem} copyToClipboard={copyToClipboard} open={open} />

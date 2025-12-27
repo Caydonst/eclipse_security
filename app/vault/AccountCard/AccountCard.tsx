@@ -39,7 +39,7 @@ export default function AccountCard({ index, handleOpenAccount, vaultItem, isFav
                 }
             }}
         >
-            {vaultItem?.type === "password" &&
+            {vaultItem?.type === "login" &&
                 <div className={styles.lockLogoContainer}>
                     <LockClosedSolid className={styles.lockLogo} />
                 </div>
@@ -56,7 +56,7 @@ export default function AccountCard({ index, handleOpenAccount, vaultItem, isFav
             }
             <div className={styles.accountCardInfo}>
                 <h3>{vaultItem?.name}</h3>
-                {vaultItem?.type === "password" &&
+                {vaultItem?.type === "login" &&
                     <p>{vaultItem?.login}</p>
                 }
                 {vaultItem?.type === "paymentCard" &&

@@ -1,7 +1,7 @@
 import styles from "../page.module.css"
 import {useEffect, useState} from "react";
 import {EyeIcon, EyeSlashIcon} from "@heroicons/react/24/outline"
-import VaultItem from "@/app/vault/passwords"
+import {VaultItem} from "@/app/api/vault/vaultItems"
 
 type props = {
     vaultItem: VaultItem;
@@ -9,7 +9,7 @@ type props = {
     open: boolean;
 }
 
-export default function PasswordInfo({ vaultItem, copyToClipboard, open }: props) {
+export default function LoginInfo({ vaultItem, copyToClipboard, open }: props) {
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {

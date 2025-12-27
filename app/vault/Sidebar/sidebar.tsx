@@ -41,7 +41,7 @@ export default function Sidebar({selected, setSelected, setRouteTitle, handleOpe
 
     const buttons = [
         { id: "all", label: "All Items", outline: <ListBulletOutline />, solid: <ListBulletSolid /> },
-        { id: "passwords", label: "Passwords", outline: <LockClosedOutline />, solid: <LockClosedSolid /> },
+        { id: "logins", label: "Logins", outline: <LockClosedOutline />, solid: <LockClosedSolid /> },
         { id: "cards", label: "Payment Cards", outline: <CreditCardOutline />, solid: <CreditCardSolid /> },
         { id: "bank", label: "Bank Accounts", outline: <BuildingLibraryOutline />, solid: <BuildingLibrarySolid /> },
         { id: "favorites", label: "Favorites", outline: <StarOutline />, solid: <StarSolid /> },
